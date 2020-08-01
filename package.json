@@ -1,0 +1,23 @@
+{
+  "name": "driwwwle",
+  "version": "1.0.0",
+  "description": "A platform for web developers to showcase their projects",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nitin Ranganath",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "gravatar": "^1.8.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.27",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "request": "^2.88.2"
+  }
+}
