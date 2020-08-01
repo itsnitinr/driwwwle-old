@@ -19,5 +19,9 @@
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^4.0.0",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   }
 }
