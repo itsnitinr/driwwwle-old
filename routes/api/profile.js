@@ -194,4 +194,101 @@ router.get("/github/:username", async (req, res) => {
   }
 });
 
+// @route:    PUT api/profile/follow/:user_id
+// @desc:     Follow an user
+// @access:   Private
+router.put("/follow/:user_id", auth, async (req, res) => {
+  try {
+    // Check if user exists
+    const profile = await Profile.findOne({ user: req.params.user_id });
+    if (!profile) {
+      return res.status(404).json({ msg: "Profile not found" });
+    }
+
+    // Check if user is trying to follow himself/herself
+    if (req.params.user_id === req.user.id.toString()) {
+      return res.status(400).json({ msg: "You cannot follow yourself" });
+    }
+
+    // Check if user is already following
+    if (profile.followers.includes(req.user.id)) {
+      return res
+        .status(400)
+        .json({ msg: "You are already following the user" });
+    }
+
+    // Otherwise, handle followers and following
+    await Profile.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $push: { following: req.params.user_id },
+      }
+    );
+
+    await Profile.findOneAndUpdate(
+      { user: req.params.user_id },
+      {
+        $push: { followers: req.user.id },
+      }
+    );
+
+    res.json({ msg: "User followed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(400).json({ msg: "User not found" });
+    }
+    res
+      .status(500)
+      .send("There was an issue with the server. Try again later.");
+  }
+});
+
+// @route:    PUT api/profile/unfollow/:user_id
+// @desc:     Unfollow an user
+// @access:   Private
+router.put("/unfollow/:user_id", auth, async (req, res) => {
+  try {
+    // Check if user exists
+    const profile = await Profile.findOne({ user: req.params.user_id });
+    if (!profile) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // Check if user is trying to follow himself/herself
+    if (req.params.user_id === req.user.id.toString()) {
+      return res.status(400).json({ msg: "You cannot unfollow yourself" });
+    }
+
+    // Check if user is following in the first place
+    if (!profile.followers.includes(req.user.id)) {
+      return res.status(400).json({ msg: "You are not following this user" });
+    }
+
+    // Otherwise, handle followers and following
+    await Profile.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $pull: { following: req.params.user_id },
+      }
+    );
+
+    await Profile.findOneAndUpdate(
+      { user: req.params.user_id },
+      {
+        $pull: { followers: req.user.id },
+      }
+    );
+    res.json({ msg: "User unfollowed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(400).json({ msg: "User not found" });
+    }
+    res
+      .status(500)
+      .send("There was an issue with the server. Try again later.");
+  }
+});
+
 module.exports = router;
