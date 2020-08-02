@@ -22,6 +22,18 @@ const ProfileSchema = new mongoose.Schema({
   githubUsername: {
     type: String,
   },
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   social: {
     twitter: {
       type: String,
