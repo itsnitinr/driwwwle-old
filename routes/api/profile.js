@@ -91,7 +91,7 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,
-    }).populate("User", ["name", "avatar"]);
+    }).populate("user", ["name", "avatar"]);
 
     // If there's no profile
     if (!profile) {
@@ -112,7 +112,7 @@ router.get("/me", auth, async (req, res) => {
 // @access:   Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("User", ["name", "avatar"]);
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     res.json(profiles);
   } catch {
     console.error(err.message);
@@ -129,7 +129,7 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
-    }).populate("User", ["name", "avatar"]);
+    }).populate("user", ["name", "avatar"]);
 
     // If there's no profile
     if (!profile) {
