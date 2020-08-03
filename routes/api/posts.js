@@ -66,7 +66,9 @@ router.post(
 // @access:   Private
 router.get("/", auth, async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find()
+      .sort({ date: -1 })
+      .populate("likes.user", ["name", "avatar"]);
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -81,7 +83,10 @@ router.get("/", auth, async (req, res) => {
 // @access:   Private
 router.get("/:post_id", auth, async (req, res) => {
   try {
-    const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id).populate(
+      "likes.user",
+      ["name", "avatar"]
+    );
 
     // If there's no such post
     if (!post) {
@@ -105,7 +110,9 @@ router.get("/:post_id", auth, async (req, res) => {
 // @access:   Private
 router.get("/user/:user_id", auth, async (req, res) => {
   try {
-    const posts = await Post.find({ user: req.params.user_id });
+    const posts = await Post.find({
+      user: req.params.user_id,
+    }).populate("likes.user", ["name", "avatar"]);
     if (!posts) {
       return res.status(400).json({ msg: "No posts found" });
     }
