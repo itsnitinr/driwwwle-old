@@ -100,4 +100,25 @@ router.get("/:post_id", auth, async (req, res) => {
   }
 });
 
+// @route:    GET api/posts/user/:user_id
+// @desc:     Get all posts by an user
+// @access:   Private
+router.get("/user/:user_id", auth, async (req, res) => {
+  try {
+    const posts = await Post.find({ user: req.params.user_id });
+    if (!posts) {
+      return res.status(400).json({ msg: "No posts found" });
+    }
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(404).json({ msg: "Post not found" });
+    }
+    res
+      .status(500)
+      .send("There was an issue with the server. Try again later.");
+  }
+});
+
 module.exports = router;
