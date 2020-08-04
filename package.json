@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "A platform for web developers to showcase their projects",
   "main": "server.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "BROWSER=none npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Nitin Ranganath",
   "license": "ISC",
