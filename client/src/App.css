@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root {
+  --color-primary: #ea4c89;
+  --color-dark: #444444;
+  --color-blue: #3a8bbb;
+  --color-purple: #c142a0;
+  --color-skyblue: #00b6e3;
+  --color-green: #66cc99;
+  --color-grey: #9da3a5;
+}
+
+.primary-bg {
+  background: var(--color-primary);
+  color: white;
+}
+
+.primary-bg:hover {
+  color: white;
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+}

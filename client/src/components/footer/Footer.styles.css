@@ -1,0 +1,32 @@
+#footer {
+  margin-top: 1.5rem;
+  background: #1b262c;
+  color: var(--color-grey);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+#footer h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+#footer h1 span {
+  color: var(--color-primary);
+}
+
+#footer .social-icons {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+}
+
+#footer .social-icons a {
+  color: var(--color-grey);
+}
+
+#footer .social-icons a:hover {
+  color: var(--color-primary);
+}
