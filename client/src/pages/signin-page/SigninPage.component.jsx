@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
@@ -6,6 +6,20 @@ import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component
 import "./SigninPage.styles.css";
 
 const SigninPage = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <section id="signin">
       <div className="columns">
@@ -15,14 +29,17 @@ const SigninPage = () => {
         <div className="column">
           <div className="container" id="signin-right">
             <h1 className="title">Sign In</h1>
-            <form action="#" method="POST">
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control has-icons-left">
                   <input
                     className="input"
                     type="email"
-                    placeholder="Enter Email"
+                    placeholder="example@example.com"
+                    name="email"
+                    value={email}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <span className="icon is-small is-left">
@@ -36,7 +53,10 @@ const SigninPage = () => {
                   <input
                     className="input"
                     type="password"
-                    placeholder="Min 6 characters"
+                    placeholder="Enter password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => onChange(e)}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
