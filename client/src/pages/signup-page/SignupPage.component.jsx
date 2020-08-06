@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
@@ -6,6 +6,26 @@ import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component
 import "./SignupPage.styles.css";
 
 const SignupPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+  const { name, email, password, password2 } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("Passwords not not match");
+    } else {
+      console.log(formData);
+    }
+  };
+
   return (
     <section id="signup">
       <div className="columns">
@@ -13,14 +33,17 @@ const SignupPage = () => {
         <div className="column">
           <div className="container" id="signup-right">
             <h1 className="title">Sign Up</h1>
-            <form action="#" method="POST">
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="field">
                 <label className="label">Name</label>
                 <div className="control has-icons-left">
                   <input
                     className="input"
                     type="text"
-                    placeholder="Enter Name"
+                    placeholder="John Doe"
+                    name="name"
+                    value={name}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <span className="icon is-small is-left">
@@ -34,7 +57,10 @@ const SignupPage = () => {
                   <input
                     className="input"
                     type="email"
-                    placeholder="Enter Email"
+                    placeholder="example@example.com"
+                    name="email"
+                    value={email}
+                    onChange={(e) => onChange(e)}
                     required
                   />
                   <span className="icon is-small is-left">
@@ -52,6 +78,9 @@ const SignupPage = () => {
                     className="input"
                     type="password"
                     placeholder="Min 6 characters"
+                    name="password"
+                    value={password}
+                    onChange={(e) => onChange(e)}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
@@ -65,6 +94,9 @@ const SignupPage = () => {
                     className="input"
                     type="password"
                     placeholder="Reenter password"
+                    name="password2"
+                    value={password2}
+                    onChange={(e) => onChange(e)}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
