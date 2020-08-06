@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 
+import { setAlert } from "../../redux/alert/alert.actions";
+
 import "./SignupPage.styles.css";
 
-const SignupPage = () => {
+const SignupPage = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +23,7 @@ const SignupPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("Passwords not not match");
+      setAlert("Password do not match", "is-danger");
     } else {
       console.log(formData);
     }
@@ -119,4 +122,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default connect(null, { setAlert })(SignupPage);
