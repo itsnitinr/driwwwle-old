@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Sacramento&display=swap");
+
+#auth-left-panel {
+  background: var(--color-green);
+  min-height: 100vh;
+}
+
+#auth-left-panel .text-container {
+  padding: 3rem;
+}
+
+#auth-left-panel .text-container h1 {
+  font-family: Sacramento, sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+#auth-left-panel .text-container p {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+  #auth-left-panel {
+    display: none;
+  }
+}

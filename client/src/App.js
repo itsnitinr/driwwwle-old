@@ -1,20 +1,20 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Navbar from "./components/navbar/Navbar.component";
 import LandingPage from "./pages/landing-page/LandingPage.component";
-import Footer from "./components/footer/Footer.component";
+import SignupPage from "./pages/signup-page/SignupPage.component";
+import SigninPage from "./pages/signin-page/SigninPage.component";
 
 import "./App.css";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar />
       <Switch>
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/signup" component={SignupPage} />
+        <Route exact path="/signin" component={SigninPage} />
       </Switch>
-      <Footer />
     </BrowserRouter>
   );
 };

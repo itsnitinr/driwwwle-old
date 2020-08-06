@@ -1,0 +1,24 @@
+#signup #signup-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#signup #signup-right .title {
+  font-size: 2.75rem;
+}
+
+#signup form {
+  width: 55%;
+}
+
+@media screen and (max-width: 1000px) {
+  #signup form {
+    width: 80%;
+  }
+  #signup #signup-right {
+    min-height: 90vh;
+  }
+}

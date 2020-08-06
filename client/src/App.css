@@ -19,6 +19,15 @@
   color: white;
 }
 
+.green-bg {
+  background: var(--color-green);
+  color: white;
+}
+
+.green-bg:hover {
+  color: white;
+}
+
 body {
   font-family: Montserrat, sans-serif;
 }

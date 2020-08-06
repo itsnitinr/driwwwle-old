@@ -1,0 +1,24 @@
+#signin #signin-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#signin #signin-right .title {
+  font-size: 2.75rem;
+}
+
+#signin form {
+  width: 55%;
+}
+
+@media screen and (max-width: 1000px) {
+  #signin form {
+    width: 80%;
+  }
+  #signin #signin-right {
+    min-height: 85vh;
+  }
+}
