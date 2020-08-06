@@ -103,18 +103,11 @@ const SignupPage = () => {
                   </span>
                 </p>
               </div>
-              <div className="field is-grouped mt-5">
-                <p className="control">
-                  <button type="submit" className="button green-bg">
-                    Submit
-                  </button>
-                </p>
-                <p className="control">
-                  <button type="reset" className="button is-light">
-                    Cancel
-                  </button>
-                </p>
-              </div>
+              <p className="control mt-5">
+                <button type="submit" className="button green-bg">
+                  Submit
+                </button>
+              </p>
             </form>
             <p className="mt-6">
               Already have an account ? <Link to="/signin">Sign In</Link>
