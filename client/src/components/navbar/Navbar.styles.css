@@ -2,6 +2,7 @@
 
 #navbar {
   padding: 1rem;
+  align-items: center;
 }
 
 #navbar .navbar-brand a {
@@ -35,4 +36,37 @@
 
 #navbar .navbar-item a {
   font-weight: 600;
+}
+
+#navbar .navbar-link span {
+  display: none;
+}
+
+#navbar .navbar-link {
+  display: flex;
+  align-items: center;
+}
+
+#navbar .navbar-link img {
+  height: 100%;
+  width: auto;
+  transform: scale(1.3);
+  border-radius: 50%;
+}
+
+#navbar .navbar-link:not(.is-arrowless)::after {
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 1030px) {
+  #navbar .navbar-link img {
+    margin-left: 8px;
+  }
+  #navbar .navbar-link span {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  #navbar .button {
+    margin-left: 20px;
+  }
 }
