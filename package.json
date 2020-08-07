@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A platform for web developers to showcase their projects",
   "main": "server.js",
-  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "node server",
     "server": "nodemon server",

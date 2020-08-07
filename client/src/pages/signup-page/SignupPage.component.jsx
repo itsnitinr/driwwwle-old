@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 
 import { setAlert } from "../../redux/alert/alert.actions";
+import { registerUser } from "../../redux/auth/auth.actions";
 
 import "./SignupPage.styles.css";
 
-const SignupPage = ({ setAlert }) => {
+const SignupPage = ({ setAlert, registerUser }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +26,7 @@ const SignupPage = ({ setAlert }) => {
     if (password !== password2) {
       setAlert("Password do not match", "is-danger");
     } else {
-      console.log(formData);
+      registerUser({ name, email, password });
     }
   };
 
@@ -47,7 +48,6 @@ const SignupPage = ({ setAlert }) => {
                     name="name"
                     value={name}
                     onChange={(e) => onChange(e)}
-                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
@@ -64,7 +64,6 @@ const SignupPage = ({ setAlert }) => {
                     name="email"
                     value={email}
                     onChange={(e) => onChange(e)}
-                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -122,4 +121,4 @@ const SignupPage = ({ setAlert }) => {
   );
 };
 
-export default connect(null, { setAlert })(SignupPage);
+export default connect(null, { setAlert, registerUser })(SignupPage);
