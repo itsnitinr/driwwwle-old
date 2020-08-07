@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 
+import { loginUser } from "../../redux/auth/auth.actions";
+
 import "./SigninPage.styles.css";
 
-const SigninPage = () => {
+const SigninPage = ({ loginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,8 +20,12 @@ const SigninPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    loginUser(email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <section id="signin">
@@ -79,4 +86,8 @@ const SigninPage = () => {
   );
 };
 
-export default SigninPage;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser })(SigninPage);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import AuthLeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 
@@ -9,7 +9,7 @@ import { registerUser } from "../../redux/auth/auth.actions";
 
 import "./SignupPage.styles.css";
 
-const SignupPage = ({ setAlert, registerUser }) => {
+const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +29,10 @@ const SignupPage = ({ setAlert, registerUser }) => {
       registerUser({ name, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <section id="signup">
@@ -121,4 +125,8 @@ const SignupPage = ({ setAlert, registerUser }) => {
   );
 };
 
-export default connect(null, { setAlert, registerUser })(SignupPage);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, registerUser })(SignupPage);
