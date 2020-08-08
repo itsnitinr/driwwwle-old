@@ -80,7 +80,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     // Make a request to backend API
     const res = await axios.post("/api/auth", body, config);
 
-    // If no errors, dispatch REGISTER_SUCCESS
+    // If no errors, dispatch LOGIN_SUCCESS
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -92,7 +92,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     const error = err.response.data;
     dispatch(setAlert(error.msg, "is-danger"));
 
-    // Dispatch REGISTER_FAIL if error
+    // Dispatch LOGIN_FAIL if error
     dispatch({
       type: LOGIN_FAIL,
     });
