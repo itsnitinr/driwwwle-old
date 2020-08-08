@@ -1,5 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
-const DashboardPage = () => <h1>Dashboard</h1>;
+import { getCurrentProfile } from "../../redux/profile/profile.actions";
 
-export default DashboardPage;
+const DashboardPage = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <h1>Dashboard</h1>;
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { getCurrentProfile })(DashboardPage);
