@@ -89,11 +89,8 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     // Send alerts
-    const errors = err.response.data.errors;
-    console.log(errors);
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
-    }
+    const error = err.response.data;
+    dispatch(setAlert(error.msg, "is-danger"));
 
     // Dispatch REGISTER_FAIL if error
     dispatch({
