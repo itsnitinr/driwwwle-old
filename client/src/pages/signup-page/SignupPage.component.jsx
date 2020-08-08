@@ -52,6 +52,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                     name="name"
                     value={name}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
@@ -68,6 +69,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                     name="email"
                     value={email}
                     onChange={(e) => onChange(e)}
+                    requiured
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -87,6 +89,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                     name="password"
                     value={password}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
@@ -103,6 +106,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                     name="password2"
                     value={password2}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
