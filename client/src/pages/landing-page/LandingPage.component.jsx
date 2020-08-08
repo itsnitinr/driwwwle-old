@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { ReactComponent as HeaderImage } from "../../assets/images/headerImage.svg";
 import Navbar from "../../components/navbar/Navbar.component";
@@ -7,7 +8,11 @@ import Footer from "../../components/footer/Footer.component";
 
 import "./LandingPage.styles.css";
 
-const LandingPage = () => {
+const LandingPage = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <>
       <Navbar />
@@ -38,4 +43,8 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(LandingPage);
