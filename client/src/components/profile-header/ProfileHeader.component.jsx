@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./ProfileHeader.styles.css";
 
-const ProfileHeader = ({ profile }) => {
+const ProfileHeader = ({ profile, ownProfile, isDashboard }) => {
   if (!profile) {
     return (
       <div id="profile-header">
@@ -26,12 +26,18 @@ const ProfileHeader = ({ profile }) => {
       <div className="text-container">
         <h1 className="title">{profile.user.name}</h1>
         <h3 className="subtitle">{profile.bio}</h3>
-        <Link
-          to="/profile/edit"
-          className="button is-danger is-inverted is-outlined"
-        >
-          Edit Profile
-        </Link>
+        {ownProfile || isDashboard ? (
+          <Link
+            to="/profile/edit"
+            className="button is-danger is-inverted is-outlined"
+          >
+            Edit Profile
+          </Link>
+        ) : (
+          <button className="button is-danger is-inverted is-outlined">
+            Follow
+          </button>
+        )}
       </div>
     </div>
   );

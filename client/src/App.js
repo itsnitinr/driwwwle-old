@@ -12,6 +12,7 @@ import DashboardPage from "./pages/dashboard-page/DashboardPage.component";
 import CreateProfilePage from "./pages/create-profile-page/CreateProfilePage.component";
 import EditProfilePage from "./pages/edit-profile-page/EditProfilePage.component";
 import ProfilesPage from "./pages/profiles-page/ProfilesPage.component";
+import ProfilePage from "./pages/profile-page/ProfilePage.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
 import setAuthToken from "./utils/setAuthToken";
@@ -47,6 +48,7 @@ const App = () => {
             component={EditProfilePage}
           />
           <PrivateRoute exact path="/profiles" component={ProfilesPage} />
+          <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
         </Switch>
       </BrowserRouter>
     </Provider>
