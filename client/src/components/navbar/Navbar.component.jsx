@@ -33,6 +33,9 @@ const Navbar = ({ auth, logoutUser }) => {
         <Link to="/feed" className="navbar-item">
           My Feed
         </Link>
+        <Link to="/profiles" className="navbar-item">
+          Developers
+        </Link>
       </div>
       <div className="navbar-end">
         <div className="navbar-item has-dropdown is-hoverable">
