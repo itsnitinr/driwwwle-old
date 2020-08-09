@@ -69,7 +69,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                     name="email"
                     value={email}
                     onChange={(e) => onChange(e)}
-                    requiured
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>

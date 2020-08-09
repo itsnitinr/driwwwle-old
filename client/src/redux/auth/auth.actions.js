@@ -56,9 +56,11 @@ export const registerUser = ({ name, email, password }) => async (dispatch) => {
   } catch (err) {
     // Send alerts
     const errors = err.response.data.errors;
-    console.log(errors);
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
+    }
+    if (err.response.data.msg) {
+      dispatch(setAlert(err.response.data.msg, "is-danger"));
     }
 
     // Dispatch REGISTER_FAIL if error
@@ -90,8 +92,13 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     // Send alerts
-    const error = err.response.data;
-    dispatch(setAlert(error.msg, "is-danger"));
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
+    }
+    if (err.response.data.msg) {
+      dispatch(setAlert(err.response.data.msg, "is-danger"));
+    }
 
     // Dispatch LOGIN_FAIL if error
     dispatch({

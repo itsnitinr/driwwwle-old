@@ -38,7 +38,6 @@ export const createProfile = (formData, history, edit = false) => async (
   } catch (err) {
     // Send alerts
     const errors = err.response.data.errors;
-    console.log(errors);
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
     }

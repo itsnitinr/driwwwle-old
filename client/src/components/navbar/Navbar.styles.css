@@ -54,6 +54,16 @@
   border-radius: 50%;
 }
 
+#navbar .navbar-burger {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+#navbar .navbar-burger:hover {
+  color: var(--color-primary);
+}
+
 #navbar .navbar-link:not(.is-arrowless)::after {
   border-color: var(--color-primary);
 }

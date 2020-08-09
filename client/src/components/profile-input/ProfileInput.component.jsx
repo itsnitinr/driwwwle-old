@@ -15,7 +15,7 @@ const ProfileInput = ({
           className="input"
           type="text"
           placeholder={placeholder}
-          value={value}
+          value={value || ""}
           name={name}
           onChange={(e) => onChange(e)}
         />

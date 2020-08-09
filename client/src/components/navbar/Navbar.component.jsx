@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { logoutUser } from "../../redux/auth/auth.actions";
 
 import "./Navbar.styles.css";
-import "./Navbar.script";
 
 const Navbar = ({ auth, logoutUser }) => {
+  const [isActive, setIsActive] = useState(false);
+
   const isLoggedOut = (
     <div className="navbar-end">
       <div className="navbar-item">
@@ -67,9 +68,10 @@ const Navbar = ({ auth, logoutUser }) => {
           driwwwle
         </Link>
 
-        <a
-          href="/#"
-          role="button"
+        <button
+          onClick={() => {
+            setIsActive(!isActive);
+          }}
           className="navbar-burger burger"
           aria-label="menu"
           aria-expanded="false"
@@ -78,10 +80,13 @@ const Navbar = ({ auth, logoutUser }) => {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </button>
       </div>
 
-      <div id="dropdownMenu" className="navbar-menu">
+      <div
+        id="dropdownMenu"
+        className={`navbar-menu ${isActive ? "is-active" : ""}`}
+      >
         {!auth.loading && (
           <>{auth.isAuthenticated ? isLoggedIn : isLoggedOut}</>
         )}
