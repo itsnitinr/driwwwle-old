@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import LeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 import ProfileInput from "../../components/profile-input/ProfileInput.component";
 
+import { createProfile } from "../../redux/profile/profile.actions";
+
 import "./CreateProfilePage.styles.css";
 
-const CreateProfilePage = () => {
+const CreateProfilePage = ({ createProfile, history }) => {
   const [formData, setFormData] = useState({
     bio: "",
     website: "",
@@ -37,6 +40,11 @@ const CreateProfilePage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <section id="create-profile">
       <div className="columns">
@@ -44,7 +52,7 @@ const CreateProfilePage = () => {
         <div className="column">
           <div className="container" id="create-profile-right">
             <h1 className="title">Create Profile</h1>
-            <form>
+            <form onSubmit={(e) => onSubmit(e)}>
               <div className="field is-horizontal">
                 <div className="field-label is-normal">
                   <label className="label">Website & GitHub</label>
@@ -184,4 +192,4 @@ const CreateProfilePage = () => {
   );
 };
 
-export default connect()(CreateProfilePage);
+export default connect(null, { createProfile })(withRouter(CreateProfilePage));
