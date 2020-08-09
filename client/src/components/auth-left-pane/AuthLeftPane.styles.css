@@ -9,7 +9,8 @@
   padding: 3rem;
 }
 
-#auth-left-panel .text-container h1 {
+#auth-left-panel .text-container .logo {
+  color: #4a4a4a;
   font-family: Sacramento, sans-serif;
   font-size: 3rem;
   font-weight: 600;
