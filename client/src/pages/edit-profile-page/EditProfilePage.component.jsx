@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import LeftPane from "../../components/auth-left-pane/AuthLeftPane.component";
 import ProfileInput from "../../components/profile-input/ProfileInput.component";
 
-import { createProfile } from "../../redux/profile/profile.actions";
+import {
+  createProfile,
+  getCurrentProfile,
+} from "../../redux/profile/profile.actions";
 
-import "./CreateProfilePage.styles.css";
+import "../create-profile-page/CreateProfilePage.styles.css";
 
-const CreateProfilePage = ({ createProfile, history }) => {
+const EditProfilePage = ({
+  createProfile,
+  history,
+  getCurrentProfile,
+  profile: { profile, loading },
+}) => {
   const [formData, setFormData] = useState({
     bio: "",
     website: "",
@@ -22,6 +30,24 @@ const CreateProfilePage = ({ createProfile, history }) => {
     codepen: "",
     github: "",
   });
+
+  useEffect(() => {
+    getCurrentProfile();
+    setFormData({
+      bio: loading || !profile.bio ? "" : profile.bio,
+      website: loading || !profile.website ? "" : profile.website,
+      location: loading || !profile.location ? "" : profile.location,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      githubUsername:
+        loading || !profile.githubUsername ? "" : profile.githubUsername,
+      twitter: loading || !profile.social ? "" : profile.social.twitter,
+      instagram: loading || !profile.social ? "" : profile.social.instagram,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+      codepen: loading || !profile.social ? "" : profile.social.codepen,
+      github: loading || !profile.social ? "" : profile.social.github,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   const {
     bio,
@@ -42,7 +68,7 @@ const CreateProfilePage = ({ createProfile, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
@@ -192,4 +218,10 @@ const CreateProfilePage = ({ createProfile, history }) => {
   );
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfilePage));
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfilePage)
+);

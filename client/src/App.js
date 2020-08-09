@@ -10,6 +10,7 @@ import SigninPage from "./pages/signin-page/SigninPage.component";
 import PrivateRoute from "./components/private-route/PrivateRoute.component";
 import DashboardPage from "./pages/dashboard-page/DashboardPage.component";
 import CreateProfilePage from "./pages/create-profile-page/CreateProfilePage.component";
+import EditProfilePage from "./pages/edit-profile-page/EditProfilePage.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
 import setAuthToken from "./utils/setAuthToken";
@@ -38,6 +39,11 @@ const App = () => {
             exact
             path="/profile/new"
             component={CreateProfilePage}
+          />
+          <PrivateRoute
+            exact
+            path="/profile/edit"
+            component={EditProfilePage}
           />
         </Switch>
       </BrowserRouter>
