@@ -9,6 +9,7 @@ import SignupPage from "./pages/signup-page/SignupPage.component";
 import SigninPage from "./pages/signin-page/SigninPage.component";
 import PrivateRoute from "./components/private-route/PrivateRoute.component";
 import DashboardPage from "./pages/dashboard-page/DashboardPage.component";
+import CreateProfilePage from "./pages/create-profile-page/CreateProfilePage.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
 import setAuthToken from "./utils/setAuthToken";
@@ -33,6 +34,11 @@ const App = () => {
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/signin" component={SigninPage} />
           <PrivateRoute exact path="/dashboard" component={DashboardPage} />
+          <PrivateRoute
+            exact
+            path="/profile/new"
+            component={CreateProfilePage}
+          />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -1,0 +1,25 @@
+#create-profile #create-profile-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+#create-profile #create-profile-right .title {
+  font-size: 2.75rem;
+}
+
+#create-profile form {
+  width: 85%;
+}
+
+@media screen and (max-width: 1000px) {
+  #create-profile form {
+    width: 80%;
+  }
+  #create-profile #create-profile-right {
+    min-height: 90vh;
+  }
+}
