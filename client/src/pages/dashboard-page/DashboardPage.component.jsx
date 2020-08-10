@@ -6,6 +6,8 @@ import Footer from "../../components/footer/Footer.component";
 import Spinner from "../../components/spinner/Spinner.component";
 import ProfileHeader from "../../components/profile-header/ProfileHeader.component";
 
+import ProfileTabs from "../../components/profile-tabs/ProfileTabs.component";
+
 import { getCurrentProfile } from "../../redux/profile/profile.actions";
 
 const DashboardPage = ({
@@ -26,6 +28,7 @@ const DashboardPage = ({
       ) : (
         <div id="profile" className="container">
           <ProfileHeader profile={profile} isDashboard />
+          <ProfileTabs profile={profile} />
         </div>
       )}
       <Footer />
