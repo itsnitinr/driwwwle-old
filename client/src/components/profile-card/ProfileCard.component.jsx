@@ -25,8 +25,8 @@ const ProfileCard = ({
           </div>
           <div className="content">
             <p>
-              Skilled in: {skills.splice(0, 4).join(", ")}
-              {skills.length >= 1 && <span> and more</span>}
+              Skilled in: {skills.slice(0, 4).join(", ")}
+              {skills.length > 4 && <span> and more</span>}
             </p>
             <div className="social-icons">
               {social && social.twitter && (
