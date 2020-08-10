@@ -14,36 +14,36 @@ const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
   return (
     <div className="repo-cards">
       {repos.map((repo) => (
-        <div class="card" key={repo.id}>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
+        <div className="card" key={repo.id}>
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
                   <img src={repo.owner.avatar_url} alt="GitHub avatar" />
                 </figure>
               </div>
-              <div class="media-content">
-                <p class="title is-4">{repo.name}</p>
-                <p class="subtitle is-6">{username}</p>
+              <div className="media-content">
+                <p className="title is-4">{repo.name}</p>
+                <p className="subtitle is-6">{username}</p>
               </div>
             </div>
-            <div class="content">
+            <div className="content">
               {repo.description ? repo.description : "No description provided"}
               <br />
             </div>
           </div>
-          <footer class="card-footer">
-            <p class="card-footer-item">
+          <footer className="card-footer">
+            <p className="card-footer-item">
               {repo.stargazers_count}
-              <i class="fas fa-star"></i>
+              <i className="fas fa-star"></i>
             </p>
-            <p class="card-footer-item">
+            <p className="card-footer-item">
               {repo.watchers_count}
-              <i class="fas fa-eye"></i>
+              <i className="fas fa-eye"></i>
             </p>
-            <p class="card-footer-item">
+            <p className="card-footer-item">
               {repo.forks_count}
-              <i class="fas fa-code-branch"></i>
+              <i className="fas fa-code-branch"></i>
             </p>
           </footer>
         </div>
