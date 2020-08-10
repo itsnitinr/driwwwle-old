@@ -1,6 +1,10 @@
 import React from "react";
 
-const ProfileAbout = ({ profile: { website, location, skills, social } }) => {
+import GithubRepoCards from "../github-repo-cards/GithubRepoCards.component";
+
+const ProfileAbout = ({
+  profile: { website, location, skills, social, githubUsername },
+}) => {
   return (
     <>
       {website && <h1>Website: {website}</h1>}
@@ -11,6 +15,8 @@ const ProfileAbout = ({ profile: { website, location, skills, social } }) => {
       {social && social.linkedin && <h1>{social.linkedin}</h1>}
       {social && social.codepen && <h1>{social.codepen}</h1>}
       {social && social.github && <h1>{social.github}</h1>}
+
+      {githubUsername && <GithubRepoCards username={githubUsername} />}
     </>
   );
 };

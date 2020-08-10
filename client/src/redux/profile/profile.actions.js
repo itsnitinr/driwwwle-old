@@ -11,6 +11,7 @@ import {
 
 // Get current user profile
 export const getCurrentProfile = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get("/api/profile/me");
     dispatch({ type: GET_PROFILE, payload: res.data });

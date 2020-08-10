@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_PROFILE:
-      return { ...state, profile: payload, loading: false };
+      return { ...state, profile: payload, repos: [], loading: false };
     case GET_PROFILES:
       return { ...state, profiles: payload, loading: false };
     case GET_REPOS:
