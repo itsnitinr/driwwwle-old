@@ -10,15 +10,15 @@ const ProfileTabs = ({ profile }) => {
 
   return (
     <>
-      <div class="tabs is-boxed">
+      <div className="tabs is-boxed">
         <ul>
           <li
             onClick={() => setActiveTab("posts")}
             className={activeTab === "posts" ? "is-active" : undefined}
           >
             <a>
-              <span class="icon is-small">
-                <i class="fas fa-image" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-image" aria-hidden="true"></i>
               </span>
               <span>Posts</span>
             </a>
@@ -28,8 +28,8 @@ const ProfileTabs = ({ profile }) => {
             className={activeTab === "about" ? "is-active" : undefined}
           >
             <a>
-              <span class="icon is-small">
-                <i class="fas fa-music" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-music" aria-hidden="true"></i>
               </span>
               <span>About</span>
             </a>
@@ -39,8 +39,8 @@ const ProfileTabs = ({ profile }) => {
             className={activeTab === "followers" ? "is-active" : undefined}
           >
             <a>
-              <span class="icon is-small">
-                <i class="fas fa-film" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-film" aria-hidden="true"></i>
               </span>
               <span>Followers</span>
             </a>
@@ -50,8 +50,8 @@ const ProfileTabs = ({ profile }) => {
             className={activeTab === "following" ? "is-active" : undefined}
           >
             <a>
-              <span class="icon is-small">
-                <i class="far fa-file-alt" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="far fa-file-alt" aria-hidden="true"></i>
               </span>
               <span>Following</span>
             </a>
