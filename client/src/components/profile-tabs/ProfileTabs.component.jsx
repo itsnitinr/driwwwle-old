@@ -16,7 +16,7 @@ const ProfileTabs = ({ profile }) => {
             onClick={() => setActiveTab("posts")}
             className={activeTab === "posts" ? "is-active" : undefined}
           >
-            <a>
+            <a href="#!">
               <span className="icon is-small">
                 <i className="fas fa-image" aria-hidden="true"></i>
               </span>
@@ -27,7 +27,7 @@ const ProfileTabs = ({ profile }) => {
             onClick={() => setActiveTab("about")}
             className={activeTab === "about" ? "is-active" : undefined}
           >
-            <a>
+            <a href="#!">
               <span className="icon is-small">
                 <i className="fas fa-music" aria-hidden="true"></i>
               </span>
@@ -38,7 +38,7 @@ const ProfileTabs = ({ profile }) => {
             onClick={() => setActiveTab("followers")}
             className={activeTab === "followers" ? "is-active" : undefined}
           >
-            <a>
+            <a href="#!">
               <span className="icon is-small">
                 <i className="fas fa-film" aria-hidden="true"></i>
               </span>
@@ -49,7 +49,7 @@ const ProfileTabs = ({ profile }) => {
             onClick={() => setActiveTab("following")}
             className={activeTab === "following" ? "is-active" : undefined}
           >
-            <a>
+            <a href="#!">
               <span className="icon is-small">
                 <i className="far fa-file-alt" aria-hidden="true"></i>
               </span>
