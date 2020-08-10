@@ -4,16 +4,13 @@ import ProfileAbout from "../profile-about/ProfileAbout.component";
 import FollowList from "../../components/follow-list/FollowList.component";
 
 import "./ProfileTabs.styles.css";
-import Spinner from "../spinner/Spinner.component";
 
 const ProfileTabs = ({ profile }) => {
   const [activeTab, setActiveTab] = useState("posts");
 
   return (
     <>
-      {!profile ? (
-        <Spinner />
-      ) : (
+      {!profile ? null : (
         <>
           <div className="tabs is-boxed">
             <ul>

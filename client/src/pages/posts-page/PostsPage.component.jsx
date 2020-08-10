@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import Spinner from "../../components/spinner/Spinner.component";
 import Navbar from "../../components/navbar/Navbar.component";
 import Footer from "../../components/footer/Footer.component";
 

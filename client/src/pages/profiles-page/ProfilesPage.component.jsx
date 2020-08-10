@@ -23,7 +23,7 @@ const ProfilesPage = ({ profile: { profiles, loading }, getProfiles }) => {
         <>
           <section id="profiles-page" className="container px-5">
             <h1 className="title">All Developer Profiles</h1>
-            <div className="profile-cards columns">
+            <div className="profile-cards columns is-multiline">
               {profiles.map((profile) => (
                 <ProfileCard key={profile._id} profile={profile} />
               ))}
