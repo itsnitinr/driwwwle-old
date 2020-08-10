@@ -1,9 +1,47 @@
 import React from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import "./ProfileHeader.styles.css";
 
-const ProfileHeader = ({ profile, ownProfile, isDashboard }) => {
+const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
+  const followUser = async () => {
+    await axios.put(`/api/profile/follow/${id}`);
+    window.location.reload(false);
+  };
+
+  const unfollowUser = async () => {
+    await axios.put(`/api/profile/unfollow/${id}`);
+    window.location.reload(false);
+  };
+
+  const followOrUnfollowButton = () => {
+    if (
+      profile.followers.filter(
+        (follower) => follower.user._id === auth.user._id
+      ).length === 0
+    ) {
+      return (
+        <button
+          onClick={followUser}
+          className="button is-danger is-inverted is-outlined"
+        >
+          Follow
+        </button>
+      );
+    } else {
+      return (
+        <button
+          onClick={unfollowUser}
+          className="button is-danger is-inverted is-outlined"
+        >
+          Unfollow
+        </button>
+      );
+    }
+  };
+
   if (!profile) {
     return (
       <div id="profile-header">
@@ -34,13 +72,15 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard }) => {
             Edit Profile
           </Link>
         ) : (
-          <button className="button is-danger is-inverted is-outlined">
-            Follow
-          </button>
+          followOrUnfollowButton()
         )}
       </div>
     </div>
   );
 };
 
-export default ProfileHeader;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(ProfileHeader);

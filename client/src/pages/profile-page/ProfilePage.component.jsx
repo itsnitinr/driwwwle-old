@@ -30,6 +30,7 @@ const ProfilePage = ({
           <ProfileHeader
             profile={profile}
             ownProfile={!loading && auth.user._id === profile.user._id}
+            id={match.params.id}
           />
           <ProfileTabs profile={profile} />
         </div>
