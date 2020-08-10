@@ -91,7 +91,10 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,
-    }).populate("user", ["name", "avatar"]);
+    })
+      .populate("user", ["name", "avatar"])
+      .populate("followers.user", ["name", "avatar"])
+      .populate("following.user", ["name", "avatar"]);
 
     // If there's no profile
     if (!profile) {
@@ -112,7 +115,10 @@ router.get("/me", auth, async (req, res) => {
 // @access:   Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    const profiles = await Profile.find()
+      .populate("user", ["name", "avatar"])
+      .populate("followers.user", ["name", "avatar"])
+      .populate("following.user", ["name", "avatar"]);
     res.json(profiles);
   } catch {
     console.error(err.message);
@@ -129,7 +135,10 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
-    }).populate("user", ["name", "avatar"]);
+    })
+      .populate("user", ["name", "avatar"])
+      .populate("followers.user", ["name", "avatar"])
+      .populate("following.user", ["name", "avatar"]);
 
     // If there's no profile
     if (!profile) {
@@ -211,24 +220,28 @@ router.put("/follow/:user_id", auth, async (req, res) => {
     }
 
     // Check if user is already following
-    if (profile.followers.includes(req.user.id)) {
+    if (
+      profile.followers.filter(
+        (follower) => follower.user.toString() === req.user.id
+      ).length > 0
+    ) {
       return res
         .status(400)
-        .json({ msg: "You are already following the user" });
+        .json({ msg: "You are already following this user" });
     }
 
     // Otherwise, handle followers and following
     await Profile.findOneAndUpdate(
       { user: req.user.id },
       {
-        $push: { following: req.params.user_id },
+        $push: { following: { user: req.params.user_id } },
       }
     );
 
     await Profile.findOneAndUpdate(
       { user: req.params.user_id },
       {
-        $push: { followers: req.user.id },
+        $push: { followers: { user: req.user.id } },
       }
     );
 
@@ -261,7 +274,11 @@ router.put("/unfollow/:user_id", auth, async (req, res) => {
     }
 
     // Check if user is following in the first place
-    if (!profile.followers.includes(req.user.id)) {
+    if (
+      profile.followers.filter(
+        (follower) => follower.user.toString() === req.user.id
+      ).length === 0
+    ) {
       return res.status(400).json({ msg: "You are not following this user" });
     }
 
@@ -269,14 +286,14 @@ router.put("/unfollow/:user_id", auth, async (req, res) => {
     await Profile.findOneAndUpdate(
       { user: req.user.id },
       {
-        $pull: { following: req.params.user_id },
+        $pull: { following: { user: req.params.user_id } },
       }
     );
 
     await Profile.findOneAndUpdate(
       { user: req.params.user_id },
       {
-        $pull: { followers: req.user.id },
+        $pull: { followers: { user: req.user.id } },
       }
     );
     res.json({ msg: "User unfollowed" });
