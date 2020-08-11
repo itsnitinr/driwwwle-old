@@ -10,6 +10,25 @@
   --color-grey: #9da3a5;
 }
 
+.primary-text {
+  color: var(--color-primary);
+}
+.blue-text {
+  color: var(--color-blue);
+}
+.green-text {
+  color: var(--color-green);
+}
+.purple-text {
+  color: var(--color-purple);
+}
+.dark-text {
+  color: var(--color-dark);
+}
+.skyblue-text {
+  color: var(--color-skyblue);
+}
+
 .primary-bg {
   background: var(--color-primary);
   color: white;

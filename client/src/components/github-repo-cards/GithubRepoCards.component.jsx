@@ -23,8 +23,10 @@ const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-4">{repo.name}</p>
-                <p className="subtitle is-6">{username}</p>
+                <a href={repo.html_url} className="title is-4">
+                  {repo.name}
+                </a>
+                <p className="subtitle is-6 mt-1">{username}</p>
               </div>
             </div>
             <div className="content">
@@ -35,15 +37,15 @@ const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
           <footer className="card-footer">
             <p className="card-footer-item">
               {repo.stargazers_count}
-              <i className="fas fa-star"></i>
+              <i className="fas fa-star ml-2"></i>
             </p>
             <p className="card-footer-item">
               {repo.watchers_count}
-              <i className="fas fa-eye"></i>
+              <i className="fas fa-eye ml-2"></i>
             </p>
             <p className="card-footer-item">
               {repo.forks_count}
-              <i className="fas fa-code-branch"></i>
+              <i className="fas fa-code-branch ml-2"></i>
             </p>
           </footer>
         </div>

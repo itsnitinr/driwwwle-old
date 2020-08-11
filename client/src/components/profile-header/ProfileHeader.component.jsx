@@ -27,7 +27,7 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
           onClick={followUser}
           className="button is-danger is-inverted is-outlined"
         >
-          Follow
+          <i className="fas fa-user-plus mr-2"></i>Follow
         </button>
       );
     } else {
@@ -36,7 +36,7 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
           onClick={unfollowUser}
           className="button is-danger is-inverted is-outlined"
         >
-          Unfollow
+          <i className="fas fa-user-minus mr-2"></i>Unfollow
         </button>
       );
     }
@@ -51,7 +51,7 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
             to="/profile/new"
             className="button is-danger is-inverted is-outlined"
           >
-            Create Profile
+            <i className="fas fa-user-cog mr-2"></i>Create Profile
           </Link>
         </div>
       </div>
@@ -69,7 +69,7 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
             to="/profile/edit"
             className="button is-danger is-inverted is-outlined"
           >
-            Edit Profile
+            <i className="fas fa-user-edit mr-2"></i>Edit Profile
           </Link>
         ) : (
           followOrUnfollowButton()

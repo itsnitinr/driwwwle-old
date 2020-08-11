@@ -31,7 +31,7 @@ const ProfileTabs = ({ profile }) => {
               >
                 <a href="#!">
                   <span className="icon is-small">
-                    <i className="fas fa-music" aria-hidden="true"></i>
+                    <i className="fas fa-user" aria-hidden="true"></i>
                   </span>
                   <span>About</span>
                 </a>
@@ -42,7 +42,7 @@ const ProfileTabs = ({ profile }) => {
               >
                 <a href="#!">
                   <span className="icon is-small">
-                    <i className="fas fa-film" aria-hidden="true"></i>
+                    <i className="fas fa-user-friends" aria-hidden="true"></i>
                   </span>
                   <span>Followers</span>
                 </a>
@@ -53,7 +53,7 @@ const ProfileTabs = ({ profile }) => {
               >
                 <a href="#!">
                   <span className="icon is-small">
-                    <i className="far fa-file-alt" aria-hidden="true"></i>
+                    <i className="fas fa-user-friends" aria-hidden="true"></i>
                   </span>
                   <span>Following</span>
                 </a>

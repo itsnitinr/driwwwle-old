@@ -1,0 +1,39 @@
+.profile-about-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-about-content .about-user {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.profile-about-content .about-user > * {
+  margin-bottom: 0.5rem;
+}
+
+.profile-about-content .about-user svg {
+  margin-right: 0.5rem;
+}
+
+.profile-about-content .about-socials svg {
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-about-content .about-socials .fa-twitter {
+  fill: var(--color-primary);
+}
+
+@media screen and (max-width: 700px) {
+  .profile-about-content {
+    padding: 0 1.5rem;
+  }
+  .github-title,
+  .about-title {
+    font-size: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}

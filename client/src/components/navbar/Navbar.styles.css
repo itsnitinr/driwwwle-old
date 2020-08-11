@@ -60,6 +60,17 @@
   outline: none;
 }
 
+.navbar-link.is-active,
+.navbar-link:focus,
+.navbar-link:focus-within,
+.navbar-link:hover,
+a.navbar-item.is-active,
+a.navbar-item:focus,
+a.navbar-item:focus-within,
+a.navbar-item:hover {
+  color: var(--color-primary);
+}
+
 #navbar .navbar-burger:hover {
   color: var(--color-primary);
 }
