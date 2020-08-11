@@ -13,13 +13,13 @@ router.post(
   "/",
   [
     auth,
+    upload,
     [
       check("title", "Title is required").not().isEmpty(),
       check("techTags", "Atleast 1 tag is required").not().isEmpty(),
       check("websiteUrl", "Enter a valid URL").isURL(),
       check("websiteUrl", "Website URL is required").not().isEmpty(),
     ],
-    upload,
   ],
   async (req, res) => {
     // Check for validation errors

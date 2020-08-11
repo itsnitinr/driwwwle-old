@@ -1,0 +1,25 @@
+#add-post #add-post-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 3rem 0;
+}
+
+#add-post #add-post-right .title {
+  font-size: 2.75rem;
+}
+
+#add-post form {
+  width: 55%;
+}
+
+@media screen and (max-width: 1000px) {
+  #add-post form {
+    width: 80%;
+  }
+  #add-post #add-post-right {
+    min-height: 90vh;
+  }
+}

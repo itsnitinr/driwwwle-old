@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { GET_POSTS, POST_ERROR } from "./post.types";
+import { setAlert } from "../alert/alert.actions";
+import { GET_POSTS, POST_ERROR, ADD_POST } from "./post.types";
 
 // Get all posts
 export const getPosts = () => async (dispatch) => {
@@ -8,6 +9,33 @@ export const getPosts = () => async (dispatch) => {
     const res = await axios.get("/api/posts");
     dispatch({ type: GET_POSTS, payload: res.data });
   } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Add a new post
+export const addPost = (formData, history) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  try {
+    const res = await axios.post("/api/posts", formData, config);
+    dispatch({ type: ADD_POST, payload: res.data });
+    history.push("/posts");
+    dispatch(setAlert("Successfully added a post", "is-success"));
+  } catch (err) {
+    // Send alerts
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
+    }
+
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
