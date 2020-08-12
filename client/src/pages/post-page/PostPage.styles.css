@@ -1,6 +1,7 @@
 #post .post-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 #post .post-header img {
@@ -11,43 +12,42 @@
   margin-right: 30px;
 }
 
-#post .post-header .post-header-text h1 {
+#post .post-header .post-header-left h1 {
   font-size: 1.75rem;
   font-weight: bold;
 }
 
-/* #post .post-body {
-  padding: 3rem;
+#post .post-header-left {
+  display: flex;
+  align-items: center;
 }
 
-#post .post-buttons {
+#post .post-header-right {
   display: flex;
   justify-content: flex-end;
 }
 
-#post .post-buttons a {
-  border-radius: 10px;
-  font-weight: bold;
+#post .post-header-text {
+  display: flex;
+  flex-direction: column;
 }
 
-#post .post-description {
-  margin-top: -32px;
-  font-size: 1.3rem;
-} */
-
-/* @media screen and (max-width: 700px) {
-  #post .post-buttons {
-    justify-content: center;
+@media screen and (max-width: 700px) {
+  #post .post-header .post-header-left h1 {
+    font-size: 1.2rem;
   }
-  #post .post-buttons a {
-    font-size: 0.85rem;
+  #post .post-header .post-header-left h3 {
+    font-size: 0.8rem;
   }
-  #post .post-body {
-    display: flex;
+  #post .post-header-right {
     flex-direction: column;
+    align-items: flex-end;
   }
-  #post .post-description {
-    margin-top: 10px;
-    font-size: 1rem;
+  #post .post-header img {
+    height: 40px;
+    margin-right: 15px;
   }
-} */
+  #post .post-header-right button {
+    margin-right: 20px;
+  }
+}

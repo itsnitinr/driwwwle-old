@@ -1,0 +1,45 @@
+.tiles-container {
+  padding: 4rem 3rem;
+}
+
+.tiles-container .post-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tiles-container .post-buttons a:hover {
+  color: white;
+}
+
+.tiles-container .post-buttons a:hover {
+  filter: brightness(110%);
+}
+
+.tiles-container .tech-tags {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.tiles-container .other-info {
+  font-size: 1.2rem;
+}
+
+.tiles-container .add-comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+.tiles-container .comments {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 700px) {
+  .tiles-container .add-comment {
+    width: 100%;
+  }
+}

@@ -37,6 +37,10 @@
   background: var(--color-dark);
   color: white;
 }
+.purple-bg {
+  background: var(--color-purple);
+  color: white;
+}
 
 .primary-bg:hover {
   color: white;
