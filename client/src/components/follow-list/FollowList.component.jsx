@@ -2,7 +2,7 @@ import React from "react";
 
 import "./FollowList.styles.css";
 
-const FollowList = ({ list, which, history }) => {
+const FollowList = ({ list, which }) => {
   return (
     <>
       {list.length === 0 ? (
