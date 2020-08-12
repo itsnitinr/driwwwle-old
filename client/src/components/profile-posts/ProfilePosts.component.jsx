@@ -21,7 +21,7 @@ const ProfilePosts = ({ post: { posts, loading }, getUserPosts, userId }) => {
       ) : (
         <section id="posts" className="container">
           {posts.length === 0 ? (
-            <h1 className="title">You haven't posted anything yet !</h1>
+            <h1 className="title">User hasn't posted anything yet !</h1>
           ) : (
             <div className="columns is-multiline">
               {posts.map((post) => (
