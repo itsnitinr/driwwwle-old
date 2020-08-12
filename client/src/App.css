@@ -33,6 +33,10 @@
   background: var(--color-primary);
   color: white;
 }
+.dark-bg {
+  background: var(--color-dark);
+  color: white;
+}
 
 .primary-bg:hover {
   color: white;

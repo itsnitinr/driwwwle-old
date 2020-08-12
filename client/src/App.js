@@ -15,6 +15,7 @@ import ProfilesPage from "./pages/profiles-page/ProfilesPage.component";
 import ProfilePage from "./pages/profile-page/ProfilePage.component";
 import PostsPage from "./pages/posts-page/PostsPage.component";
 import AddPostPage from "./pages/add-post-page/AddPostPage.component";
+import PostPage from "./pages/post-page/PostPage.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
 import setAuthToken from "./utils/setAuthToken";
@@ -53,6 +54,7 @@ const App = () => {
           <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
           <PrivateRoute exact path="/posts" component={PostsPage} />
           <PrivateRoute exact path="/posts/new" component={AddPostPage} />
+          <PrivateRoute exact path="/posts/:id" component={PostPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -5,7 +5,7 @@ import "./PostCard.styles.css";
 
 const PostCard = ({ post }) => {
   return (
-    <div class="post column is-one-third">
+    <div className="post column is-one-third">
       <div className="post-main">
         <Link to={`/posts/${post._id}`}>
           <img
@@ -19,17 +19,17 @@ const PostCard = ({ post }) => {
         </div>
       </div>
       <div className="post-footer">
-        <div class="post-description">
+        <div className="post-description">
           <Link to={`/profile/${post.user._id}`}>
-            <div class="user-info dark-text">
+            <div className="user-info dark-text">
               <img src={post.user.avatar} alt="User avatar" />
               <h1>{post.user.name}</h1>
             </div>
           </Link>
-          <div class="like-comment">
-            <i class="far fa-heart"></i>
+          <div className="like-comment">
+            <i className="far fa-heart"></i>
             <span className="ml-1">{post.likes.length}</span>
-            <i class="far fa-comment ml-2"></i>
+            <i className="far fa-comment ml-2"></i>
             <span className="ml-1">{post.comments.length}</span>
           </div>
         </div>

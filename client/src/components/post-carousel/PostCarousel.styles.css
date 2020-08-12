@@ -1,0 +1,34 @@
+.carousel-container {
+  padding: 1rem;
+}
+
+.slides {
+  padding: 2rem;
+  padding-bottom: 0.5rem;
+  border-radius: 20px;
+}
+
+.slides img {
+  border-radius: 20px;
+}
+
+.slick-dots {
+  width: 100%;
+}
+
+.carousel-container .slick-arrow::before {
+  color: var(--color-primary);
+}
+
+@media screen and (max-width: 900px) {
+  .carousel-container {
+    padding: 1rem 2.25rem;
+  }
+  .slides {
+    padding: 0rem;
+    border-radius: 10px;
+  }
+  .slides img {
+    border-radius: 10px;
+  }
+}
