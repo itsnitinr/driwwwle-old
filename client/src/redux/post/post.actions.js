@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { setAlert } from "../alert/alert.actions";
-import { GET_POSTS, POST_ERROR, ADD_POST } from "./post.types";
+import { GET_POST, GET_POSTS, POST_ERROR, ADD_POST } from "./post.types";
 
 // Get all posts
 export const getPosts = () => async (dispatch) => {
@@ -36,6 +36,19 @@ export const addPost = (formData, history) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
     }
 
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Get post by ID
+export const getPostById = (postId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${postId}`);
+    dispatch({ type: GET_POST, payload: res.data });
+  } catch (err) {
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
