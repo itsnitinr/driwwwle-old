@@ -7,7 +7,7 @@ const PostCard = ({ post }) => {
   return (
     <div class="post column is-one-third">
       <div className="post-main">
-        <Link to={`/post/${post._id}`}>
+        <Link to={`/posts/${post._id}`}>
           <img
             className="post-image"
             src={post.images[post.images.length - 1]}
