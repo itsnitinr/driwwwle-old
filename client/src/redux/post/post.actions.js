@@ -1,12 +1,19 @@
 import axios from "axios";
 
 import { setAlert } from "../alert/alert.actions";
-import { GET_POST, GET_POSTS, POST_ERROR, ADD_POST } from "./post.types";
+import {
+  GET_POST,
+  GET_POSTS,
+  POST_ERROR,
+  ADD_POST,
+  CLEAR_POST,
+} from "./post.types";
 
 // Get all posts
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/posts");
+    dispatch({ type: CLEAR_POST });
     dispatch({ type: GET_POSTS, payload: res.data });
   } catch (err) {
     dispatch({
