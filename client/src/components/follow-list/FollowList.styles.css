@@ -1,0 +1,19 @@
+.follow-list-item {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.follow-list-item img {
+  border-radius: 50%;
+  width: 50px;
+}
+
+@media screen and (max-width: 700px) {
+  .follow-list {
+    padding: 1rem 1.5rem;
+    display: flex;
+  }
+  .follow-list-item {
+    padding: 0.75rem;
+  }
+}
