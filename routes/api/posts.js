@@ -68,6 +68,7 @@ router.get("/", auth, async (req, res) => {
   try {
     const posts = await Post.find()
       .sort({ date: -1 })
+      .populate("user", ["name", "avatar"])
       .populate("likes.user", ["name", "avatar"])
       .populate("comments.user", ["name", "avatar"]);
     res.json(posts);
@@ -85,6 +86,7 @@ router.get("/", auth, async (req, res) => {
 router.get("/:post_id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id)
+      .populate("user", ["name", "avatar"])
       .populate("likes.user", ["name", "avatar"])
       .populate("comments.user", ["name", "avatar"]);
 
