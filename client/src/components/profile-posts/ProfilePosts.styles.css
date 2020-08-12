@@ -1,0 +1,9 @@
+@media screen and (max-width: 700px) {
+  #posts .post {
+    padding: 1rem 2rem;
+  }
+  #posts .title {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}

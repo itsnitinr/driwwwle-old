@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 import ProfileAbout from "../profile-about/ProfileAbout.component";
 import FollowList from "../../components/follow-list/FollowList.component";
+import ProfilePosts from "../../components/profile-posts/ProfilePosts.component";
 
 import "./ProfileTabs.styles.css";
 
-const ProfileTabs = ({ profile }) => {
+const ProfileTabs = ({ profile, userId }) => {
   const [activeTab, setActiveTab] = useState("posts");
 
   return (
@@ -64,7 +65,7 @@ const ProfileTabs = ({ profile }) => {
             className="tab-content"
             style={activeTab === "posts" ? { display: "block" } : null}
           >
-            Posts
+            <ProfilePosts userId={userId} />
           </div>
           <div
             className="tab-content"

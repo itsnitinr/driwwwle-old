@@ -115,6 +115,7 @@ router.get("/user/:user_id", auth, async (req, res) => {
     const posts = await Post.find({
       user: req.params.user_id,
     })
+      .populate("user", ["name", "avatar"])
       .populate("likes.user", ["name", "avatar"])
       .populate("comments.user", ["name", "avatar"]);
     if (!posts) {

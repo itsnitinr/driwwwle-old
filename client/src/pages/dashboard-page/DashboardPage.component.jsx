@@ -23,12 +23,12 @@ const DashboardPage = ({
   return (
     <>
       <Navbar />
-      {loading && profile === null ? (
+      {(loading && profile === null) || !user ? (
         <Spinner />
       ) : (
         <div id="profile" className="container">
           <ProfileHeader profile={profile} isDashboard />
-          <ProfileTabs profile={profile} />
+          <ProfileTabs profile={profile} userId={user._id} />
         </div>
       )}
       <Footer />
