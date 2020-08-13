@@ -90,6 +90,7 @@ const AddPostPage = ({ addPost, history }) => {
                       type="file"
                       name="postImage"
                       multiple
+                      required
                       onChange={(e) => onImageSelect(e)}
                     />
                     <span className="file-cta">
