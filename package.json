@@ -7,7 +7,8 @@
     "start": "node server",
     "server": "nodemon server",
     "client": "BROWSER=none npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm i --prefix && npm run build --prefix client"
   },
   "author": "Nitin Ranganath",
   "license": "ISC",
