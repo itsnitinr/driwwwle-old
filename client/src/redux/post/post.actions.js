@@ -7,6 +7,7 @@ import {
   POST_ERROR,
   ADD_POST,
   CLEAR_POST,
+  DELETE_POST,
 } from "./post.types";
 
 // Get all posts
@@ -68,6 +69,21 @@ export const getUserPosts = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/posts/user/${userId}`);
     dispatch({ type: GET_POSTS, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete a post
+export const deletePost = (postId, history) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/${postId}`);
+    dispatch({ type: DELETE_POST, payload: postId });
+    dispatch(setAlert("Post was deleted", "is-success"));
+    history.push("/posts");
   } catch (err) {
     dispatch({
       type: POST_ERROR,

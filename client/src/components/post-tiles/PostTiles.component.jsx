@@ -1,12 +1,29 @@
 import React from "react";
 import Moment from "react-moment";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import Comment from "../comment/Comment.component";
+
+import { deletePost } from "../../redux/post/post.actions";
 
 import "./PostTiles.styles.css";
 
 const PostTiles = ({
-  post: { description, websiteUrl, repoUrl, techTags, comments, date, likes },
+  post: {
+    _id,
+    description,
+    websiteUrl,
+    repoUrl,
+    techTags,
+    comments,
+    date,
+    likes,
+    user,
+  },
+  auth,
+  history,
+  deletePost,
 }) => {
   return (
     <div className="container tiles-container">
@@ -57,9 +74,14 @@ const PostTiles = ({
                   View Source Code
                 </a>
               )}
-              <button className="button is-warning">
-                <i className="fas fa-trash mr-2"></i> Delete This Post
-              </button>
+              {user._id === auth.user._id && (
+                <button
+                  onClick={(e) => deletePost(_id, history)}
+                  className="button is-danger"
+                >
+                  <i className="fas fa-trash mr-2"></i> Delete This Post
+                </button>
+              )}
               <hr />
             </div>
           </div>
@@ -92,4 +114,8 @@ const PostTiles = ({
   );
 };
 
-export default PostTiles;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { deletePost })(withRouter(PostTiles));

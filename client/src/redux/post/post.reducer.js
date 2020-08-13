@@ -4,6 +4,7 @@ import {
   ADD_POST,
   GET_POST,
   CLEAR_POST,
+  DELETE_POST,
 } from "./post.types";
 
 const initialState = {
@@ -24,6 +25,12 @@ export default function (state = initialState, action) {
       return { ...state, posts: [...state.posts, payload], loading: false };
     case CLEAR_POST:
       return { ...state, post: null, loading: false };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== payload),
+        loading: false,
+      };
     case POST_ERROR:
       return { ...state, error: payload, loading: false };
     default:
