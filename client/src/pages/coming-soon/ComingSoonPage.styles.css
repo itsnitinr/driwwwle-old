@@ -1,0 +1,17 @@
+#coming-soon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+#coming-soon-image {
+  width: 100%;
+  height: 100%;
+}
+
+#coming-soon h1 {
+  font-size: 2rem;
+  text-align: center;
+}
