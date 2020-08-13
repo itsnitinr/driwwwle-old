@@ -25,7 +25,7 @@ const PostHeader = ({
           onClick={() => removeLike(_id)}
           className="button is-danger mr-5"
         >
-          <i class="far fa-heart mr-2"></i> Unlike
+          <i className="far fa-heart mr-2"></i> Unlike
         </button>
       );
     }

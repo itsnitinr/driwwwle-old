@@ -1,31 +1,48 @@
 import React from "react";
 import Moment from "react-moment";
+import { connect } from "react-redux";
 
-const Comment = ({ user: { name, avatar }, text, date }) => {
+import { deleteComment } from "../../redux/post/post.actions";
+
+import "./Comment.styles.css";
+
+const Comment = ({ comment, auth, postId, commentId, deleteComment }) => {
   return (
     <article className="media">
       <figure className="media-left">
         <p className="image is-64x64">
-          <img src={avatar} alt="User avatar" />
+          <img src={comment.user.avatar} alt="User avatar" />
         </p>
       </figure>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong>{name}</strong>
+            <strong>
+              {comment.user.name}
+              <br />
+            </strong>
             <small>
-              <Moment fromNow>{date}</Moment>
+              <Moment fromNow>{comment.date}</Moment>
             </small>
             <br />
-            {text}
+            {comment.text}
           </p>
         </div>
       </div>
-      <div className="media-right">
-        <button className="delete"></button>
-      </div>
+      {comment.user._id === auth.user._id && (
+        <div className="media-right">
+          <button
+            onClick={(e) => deleteComment(postId, commentId)}
+            className="delete mr-5"
+          ></button>
+        </div>
+      )}
     </article>
   );
 };
 
-export default Comment;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { deleteComment })(Comment);

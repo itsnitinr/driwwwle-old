@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Comment from "../comment/Comment.component";
+import CommentForm from "../comment-form/CommentForm.component";
 
 import { deletePost } from "../../redux/post/post.actions";
 
@@ -38,11 +39,7 @@ const PostTiles = ({
           </div>
           <div className="tile add-comment">
             <h1 className="title primary-text">Add a Comment</h1>
-            <textarea
-              className="textarea"
-              placeholder="Awesome ! I work with the same tech stack too."
-            ></textarea>
-            <button className="button primary-bg mt-4">Post</button>
+            <CommentForm postId={_id} />
             <hr />
           </div>
           <div className="tile comments">
@@ -52,9 +49,10 @@ const PostTiles = ({
             ) : (
               comments.map((comment) => (
                 <Comment
-                  user={comment.user}
-                  text={comment.text}
-                  date={comment.date}
+                  key={comment._id}
+                  postId={_id}
+                  commentId={comment._id}
+                  comment={comment}
                 />
               ))
             )}

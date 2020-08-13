@@ -8,6 +8,8 @@ import {
   ADD_POST,
   UPDATE_LIKES,
   CLEAR_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
   DELETE_POST,
 } from "./post.types";
 
@@ -98,6 +100,51 @@ export const removeLike = (postId) => async (dispatch) => {
     const res = await axios.put(`/api/posts/unlike/${postId}`);
     dispatch({ type: UPDATE_LIKES, payload: { postId, likes: res.data } });
     window.location.reload(false);
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Add a comment
+export const addComment = (postId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.post(
+      `/api/posts/comment/${postId}`,
+      formData,
+      config
+    );
+    dispatch({ type: ADD_COMMENT, payload: res.data });
+    dispatch(setAlert("Comment added", "is-success"));
+    window.location.reload(false);
+  } catch (err) {
+    // Send alerts
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "is-danger")));
+    }
+
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Delete a comment
+export const deleteComment = (postId, commentId) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    dispatch({ type: REMOVE_COMMENT, payload: commentId });
+    dispatch(setAlert("Comment deleted", "is-danger"));
   } catch (err) {
     dispatch({
       type: POST_ERROR,

@@ -5,6 +5,8 @@ import {
   GET_POST,
   UPDATE_LIKES,
   CLEAR_POST,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
   DELETE_POST,
 } from "./post.types";
 
@@ -32,6 +34,23 @@ export default function (state = initialState, action) {
       };
     case CLEAR_POST:
       return { ...state, post: null, loading: false };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        post: { ...state.post, comments: payload },
+        loading: false,
+      };
+    case REMOVE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: state.post.comments.filter(
+            (comment) => comment._id !== payload
+          ),
+        },
+        loading: false,
+      };
     case DELETE_POST:
       return {
         ...state,
