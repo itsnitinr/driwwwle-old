@@ -3,6 +3,7 @@ import {
   POST_ERROR,
   ADD_POST,
   GET_POST,
+  UPDATE_LIKES,
   CLEAR_POST,
   DELETE_POST,
 } from "./post.types";
@@ -23,6 +24,12 @@ export default function (state = initialState, action) {
       return { ...state, posts: payload, loading: false };
     case ADD_POST:
       return { ...state, posts: [...state.posts, payload], loading: false };
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        post: { ...state.post, likes: payload.likes },
+        loading: false,
+      };
     case CLEAR_POST:
       return { ...state, post: null, loading: false };
     case DELETE_POST:
