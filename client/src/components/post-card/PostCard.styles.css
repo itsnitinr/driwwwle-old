@@ -94,4 +94,7 @@
   #posts .post img.post-image {
     max-height: 100%;
   }
+  .card-overlay {
+    bottom: 5px;
+  }
 }
