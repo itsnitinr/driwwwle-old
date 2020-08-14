@@ -16,6 +16,10 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
     password: "",
     password2: "",
   });
+
+  // State for add "is-loading" class to submit button
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { name, email, password, password2 } = formData;
 
   const onChange = (e) =>
@@ -23,9 +27,13 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     if (password !== password2) {
       setAlert("Password do not match", "is-danger");
+    } else if (password.length < 6) {
+      setAlert("Password should be atleast 6 characters long", "is-danger");
     } else {
+      setIsSubmitting(true);
       registerUser({ name, email, password });
     }
   };
@@ -114,7 +122,12 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                 </p>
               </div>
               <p className="control mt-5">
-                <button type="submit" className="button green-bg">
+                <button
+                  type="submit"
+                  className={`button green-bg ${
+                    isSubmitting ? "is-loading" : null
+                  }`}
+                >
                   Submit
                 </button>
               </p>

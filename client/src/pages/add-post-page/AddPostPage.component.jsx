@@ -17,6 +17,10 @@ const AddPostPage = ({ addPost, history }) => {
     websiteUrl: "",
     repoUrl: "",
   });
+
+  // State for add "is-loading" class to submit button
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     title,
     description,
@@ -44,6 +48,7 @@ const AddPostPage = ({ addPost, history }) => {
     post.append("techTags", techTags);
     post.append("websiteUrl", websiteUrl);
     post.append("repoUrl", repoUrl);
+    setIsSubmitting(true);
     addPost(post, history);
   };
 
@@ -65,6 +70,7 @@ const AddPostPage = ({ addPost, history }) => {
                     name="title"
                     value={title}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                 </div>
               </div>
@@ -112,6 +118,7 @@ const AddPostPage = ({ addPost, history }) => {
                     name="techTags"
                     value={techTags}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-tag"></i>
@@ -128,6 +135,7 @@ const AddPostPage = ({ addPost, history }) => {
                     name="websiteUrl"
                     value={websiteUrl}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-globe"></i>
@@ -151,7 +159,12 @@ const AddPostPage = ({ addPost, history }) => {
                 </p>
               </div>
               <p className="control mt-5">
-                <button type="submit" className="button green-bg">
+                <button
+                  type="submit"
+                  className={`button green-bg ${
+                    isSubmitting ? "is-loading" : null
+                  }`}
+                >
                   Submit
                 </button>
               </p>

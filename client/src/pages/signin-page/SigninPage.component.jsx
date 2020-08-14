@@ -13,6 +13,10 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
     email: "",
     password: "",
   });
+
+  // State for add "is-loading" class to submit button
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { email, password } = formData;
 
   const onChange = (e) =>
@@ -20,6 +24,7 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     loginUser(email, password);
   };
 
@@ -64,6 +69,7 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
                     name="password"
                     value={password}
                     onChange={(e) => onChange(e)}
+                    required
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
@@ -71,7 +77,12 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
                 </p>
               </div>
               <p className="control mt-5">
-                <button type="submit" className="button green-bg">
+                <button
+                  type="submit"
+                  className={`button green-bg ${
+                    isSubmitting ? "is-loading" : null
+                  }`}
+                >
                   Submit
                 </button>
               </p>
