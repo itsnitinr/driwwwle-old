@@ -27,6 +27,19 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+// Get personal feed
+export const getFeed = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/posts/feed");
+    dispatch({ type: GET_POSTS, payload: res.data });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // Add a new post
 export const addPost = (formData, history) => async (dispatch) => {
   const config = {
