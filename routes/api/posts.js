@@ -68,9 +68,7 @@ router.get("/", auth, async (req, res) => {
   try {
     const posts = await Post.find()
       .sort({ date: -1 })
-      .populate("user", ["name", "avatar"])
-      .populate("likes.user", ["name", "avatar"])
-      .populate("comments.user", ["name", "avatar"]);
+      .populate("user", ["name", "avatar"]);
     res.json(posts);
   } catch (err) {
     res
@@ -137,10 +135,7 @@ router.get("/user/:user_id", auth, async (req, res) => {
   try {
     const posts = await Post.find({
       user: req.params.user_id,
-    })
-      .populate("user", ["name", "avatar"])
-      .populate("likes.user", ["name", "avatar"])
-      .populate("comments.user", ["name", "avatar"]);
+    }).populate("user", ["name", "avatar"]);
     if (!posts) {
       return res.status(400).json({ msg: "No posts found" });
     }
