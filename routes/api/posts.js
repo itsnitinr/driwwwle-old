@@ -90,7 +90,9 @@ router.get("/feed", auth, async (req, res) => {
     const following = profile.following.map((following) => following.user._id);
 
     // Get posts of following users
-    const posts = await Post.find({ user: { $in: following } });
+    const posts = await Post.find({ user: { $in: following } })
+      .sort("-date")
+      .populate("user", ["name", "avatar"]);
 
     res.json(posts);
   } catch (err) {
