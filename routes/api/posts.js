@@ -73,7 +73,28 @@ router.get("/", auth, async (req, res) => {
       .populate("comments.user", ["name", "avatar"]);
     res.json(posts);
   } catch (err) {
-    console.error(err.message);
+    res
+      .status(500)
+      .send("There was an issue with the server. Try again later.");
+  }
+});
+
+// @route:    GET api/posts/feed
+// @desc:     Get posts of following users
+// @access:   Private
+router.get("/feed", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    // Create an array of user ids of following
+    const following = profile.following.map((following) => following.user._id);
+
+    // Get posts of following users
+    const posts = await Post.find({ user: { $in: following } });
+
+    res.json(posts);
+  } catch (err) {
+    console.error(err);
     res
       .status(500)
       .send("There was an issue with the server. Try again later.");
