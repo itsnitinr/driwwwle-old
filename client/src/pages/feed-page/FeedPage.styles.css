@@ -1,0 +1,27 @@
+.is-empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+.is-empty svg {
+  width: 50%;
+  height: 100%;
+}
+
+.is-empty .subtitle {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  .is-empty svg {
+    width: 100%;
+  }
+  .is-empty .subtitle {
+    text-align: center;
+  }
+}
