@@ -8,7 +8,7 @@ import ProfileCard from "../../components/profile-card/ProfileCard.component";
 
 import { getProfiles } from "../../redux/profile/profile.actions";
 
-const ProfilesPage = ({ profile: { profiles, loading }, getProfiles }) => {
+const ProfilesPage = ({ profile: { profiles }, getProfiles }) => {
   useEffect(() => {
     getProfiles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,7 @@ const ProfilesPage = ({ profile: { profiles, loading }, getProfiles }) => {
   return (
     <>
       <Navbar />
-      {loading ? (
+      {profiles.length === 0 ? (
         <Spinner />
       ) : (
         <>
