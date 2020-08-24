@@ -1,7 +1,7 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 const config = require("config");
-const request = require("request");
+const axios = require("axios");
 const router = express.Router();
 
 const auth = require("../../middleware/auth");
@@ -178,28 +178,17 @@ router.delete("/", auth, async (req, res) => {
 // @access:   Public
 router.get("/github/:username", async (req, res) => {
   try {
-    const options = {
-      uri: `https://api.github.com/users/${
-        req.params.username
-      }/repos?per_page=5&sort=created:asc&client_id:${config.get(
-        "GITHUB_API_CLIENT_ID"
-      )}&client_secret=${config.get("GITHUB_API_CLIENT_SECRET")}`,
-      method: "GET",
-      headers: { "user-agent": "node.js" },
-    };
-
-    request(options, (error, response, body) => {
-      if (error) console.error(error);
-      if (response.statusCode !== 200) {
-        return res.status(400).json({ msg: "No GitHub profile" });
-      }
-      res.json(JSON.parse(body));
+    const apiURI = encodeURI(
+      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
+    );
+    const response = await axios.get(apiURI, {
+      "user-agent": "node.js",
+      Authorization: `token ${config.get("GITHUB_API_CLIENT_ID")}`,
     });
+    return res.json(response.data);
   } catch (err) {
     console.error(err.message);
-    res
-      .status(500)
-      .send("There was an issue with the server. Try again later.");
+    res.status(400).json({ msg: "No GitHub profile" });
   }
 });
 
