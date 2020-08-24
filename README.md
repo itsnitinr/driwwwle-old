@@ -59,6 +59,7 @@ This will run both the Express backend server and the React server. It's that ea
 ## What Am I Using and Why ?
 ```
 BACKEND:
+  - axios                       Fetch user GitHub repos
   - bcryptjs                    Password encryption 
   - cloudinary                  Image cloud storage
   - config                      Storing sensitive information
@@ -69,7 +70,6 @@ BACKEND:
   - mongoose                    MongoDB ODM
   - multer                      Image upload
   - multer-storage-cloudinary   Upload image to cloudinary
-  - request                     Fetch user GitHub repos
   
 FRONTEND:
   - axios                       Making API calls
