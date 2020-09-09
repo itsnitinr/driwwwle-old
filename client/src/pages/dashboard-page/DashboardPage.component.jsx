@@ -24,7 +24,9 @@ const DashboardPage = ({
     <>
       <Navbar />
       {(loading && profile === null) || !user ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <div id="profile" className="container">
           <ProfileHeader profile={profile} isDashboard />

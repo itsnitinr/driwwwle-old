@@ -18,7 +18,9 @@ const ProfilesPage = ({ profile: { profiles }, getProfiles }) => {
     <>
       <Navbar />
       {profiles.length === 0 ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <>
           <section id="profiles-page" className="container px-5">

@@ -35,6 +35,10 @@
   margin-top: -10px;
 }
 
+#profile #profile-header.full-screen {
+  margin-bottom: 30vh;
+}
+
 @media screen and (max-width: 700px) {
   #profile #profile-header img {
     width: 120px;

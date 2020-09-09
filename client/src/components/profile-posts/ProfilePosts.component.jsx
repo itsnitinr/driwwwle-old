@@ -17,11 +17,15 @@ const ProfilePosts = ({ post: { posts, loading }, getUserPosts, userId }) => {
   return (
     <>
       {loading && !posts ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <section id="posts" className="container">
           {posts.length === 0 ? (
-            <h1 className="title">User hasn't posted anything yet !</h1>
+            <h1 className="title full-screen">
+              User hasn't posted anything yet !
+            </h1>
           ) : (
             <div className="columns is-multiline">
               {posts.map((post) => (

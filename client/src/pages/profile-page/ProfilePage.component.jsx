@@ -24,7 +24,9 @@ const ProfilePage = ({
     <>
       <Navbar />
       {!profile || loading ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <div id="profile" className="container">
           <ProfileHeader

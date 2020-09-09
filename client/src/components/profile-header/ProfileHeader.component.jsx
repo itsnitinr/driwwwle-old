@@ -44,7 +44,7 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
 
   if (!profile) {
     return (
-      <div id="profile-header">
+      <div id="profile-header" className="full-screen">
         <div className="text-container">
           <h1 className="title">Uh oh ! Profile not yet created.</h1>
           <Link

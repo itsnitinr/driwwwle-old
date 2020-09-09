@@ -58,3 +58,9 @@
 body {
   font-family: Montserrat, sans-serif;
 }
+
+.full-height-spinner {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}

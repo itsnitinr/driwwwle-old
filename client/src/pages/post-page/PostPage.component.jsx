@@ -20,7 +20,9 @@ const PostPage = ({ getPostById, post: { post, loading }, match }) => {
     <>
       <Navbar />
       {loading || !post ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <>
           <section id="post" className="container">

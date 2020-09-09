@@ -18,7 +18,9 @@ const PostsPage = ({ getPosts, post: { posts, loading } }) => {
     <>
       <Navbar />
       {loading ? (
-        <Spinner />
+        <div className="full-height-spinner">
+          <Spinner />
+        </div>
       ) : (
         <section id="posts" className="container px-5">
           <h1 className="title">Recent Posts</h1>

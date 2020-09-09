@@ -1,3 +1,7 @@
+.full-screen {
+  margin-bottom: 20vh;
+}
+
 @media screen and (max-width: 700px) {
   #posts .post {
     padding: 1rem 2rem;

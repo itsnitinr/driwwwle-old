@@ -8,6 +8,10 @@
   width: 50px;
 }
 
+.full-screen-follow {
+  margin-bottom: 25vh;
+}
+
 @media screen and (max-width: 700px) {
   .follow-list {
     padding: 1rem 1.5rem;

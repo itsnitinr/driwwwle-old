@@ -6,7 +6,7 @@ const FollowList = ({ list, which }) => {
   return (
     <>
       {list.length === 0 ? (
-        <h1 className="title">No {`${which}`}</h1>
+        <h1 className="title full-screen-follow">No {`${which}`}</h1>
       ) : (
         <div className="follow-list columns is-multiline">
           {list.map((follow) => (
