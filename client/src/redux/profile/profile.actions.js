@@ -71,7 +71,7 @@ export const getProfiles = () => async (dispatch) => {
 };
 
 // Get profile by ID
-export const getProfileById = (userId) => async (dispatch) => {
+export const getProfileById = (userId, history) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
     dispatch({
@@ -83,6 +83,8 @@ export const getProfileById = (userId) => async (dispatch) => {
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+    // Send to 404 page
+    history.push("/profile/404");
   }
 };
 

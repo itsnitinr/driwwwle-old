@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Navbar from "../../components/navbar/Navbar.component";
@@ -10,9 +11,9 @@ import PostHeader from "../../components/post-header/PostHeader.component";
 
 import { getPostById } from "../../redux/post/post.actions";
 
-const PostPage = ({ getPostById, post: { post, loading }, match }) => {
+const PostPage = ({ getPostById, post: { post, loading }, match, history }) => {
   useEffect(() => {
-    getPostById(match.params.id);
+    getPostById(match.params.id, history);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,4 +42,4 @@ const mapStateToProps = (state) => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPostById })(PostPage);
+export default withRouter(connect(mapStateToProps, { getPostById })(PostPage));

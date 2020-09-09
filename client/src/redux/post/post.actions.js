@@ -68,7 +68,7 @@ export const addPost = (formData, history) => async (dispatch) => {
 };
 
 // Get post by ID
-export const getPostById = (postId) => async (dispatch) => {
+export const getPostById = (postId, history) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/posts/${postId}`);
     dispatch({ type: GET_POST, payload: res.data });
@@ -77,6 +77,7 @@ export const getPostById = (postId) => async (dispatch) => {
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+    history.push("/posts/404");
   }
 };
 

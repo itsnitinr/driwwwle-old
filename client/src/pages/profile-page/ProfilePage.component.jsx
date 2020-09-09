@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
@@ -14,9 +15,10 @@ const ProfilePage = ({
   getProfileById,
   profile: { profile, loading },
   auth,
+  history,
 }) => {
   useEffect(() => {
-    getProfileById(match.params.id);
+    getProfileById(match.params.id, history);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,4 +49,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProfileById })(ProfilePage);
+export default withRouter(
+  connect(mapStateToProps, { getProfileById })(ProfilePage)
+);
