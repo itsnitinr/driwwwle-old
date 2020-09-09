@@ -17,6 +17,7 @@ import PostsPage from "./pages/posts-page/PostsPage.component";
 import AddPostPage from "./pages/add-post-page/AddPostPage.component";
 import PostPage from "./pages/post-page/PostPage.component";
 import FeedPage from "./pages/feed-page/FeedPage.component";
+import NotFoundPage from "./pages/not-found-page/NotFoundPage.component";
 //import ComingSoonPage from "./pages/coming-soon/ComingSoonPage.component";
 
 import { loadUser } from "./redux/auth/auth.actions";
@@ -52,6 +53,8 @@ const App = () => {
             path="/profile/edit"
             component={EditProfilePage}
           />
+          <PrivateRoute exact path="/posts/404" component={NotFoundPage} />
+          <PrivateRoute exact path="/profile/404" component={NotFoundPage} />
           <PrivateRoute exact path="/profiles" component={ProfilesPage} />
           <PrivateRoute exact path="/profile/:id" component={ProfilePage} />
           <PrivateRoute exact path="/posts" component={PostsPage} />
