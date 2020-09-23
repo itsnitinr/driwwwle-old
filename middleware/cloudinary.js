@@ -16,13 +16,6 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const imageFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
-    return cb(new Error("Only image files are allowed"), false);
-  }
-  cb(null, true);
-};
-
 const upload = multer({ storage }).array("postImage", 5);
 
 module.exports = upload;
