@@ -55,6 +55,10 @@
   color: white;
 }
 
+html {
+  overflow-y: auto;
+}
+
 body {
   font-family: Montserrat, sans-serif;
 }
