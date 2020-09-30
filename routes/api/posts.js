@@ -5,6 +5,7 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const upload = require("../../middleware/cloudinary");
 const Post = require("../../models/Post");
+const User = require("../../models/User");
 
 // @route:    POST api/posts
 // @desc:     Create a post
@@ -261,9 +262,13 @@ router.post(
 
     try {
       const post = await Post.findById(req.params.post_id);
+      const user = await User.findById(req.user.id).select("name avatar");
+
       const newComment = {
-        user: req.user.id,
+        name: user.name,
+        avatar: user.avatar,
         text: req.body.text,
+        userId: req.user.id,
       };
       post.comments.unshift(newComment);
       await post.save();
@@ -293,13 +298,13 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
     }
 
     // Check if comment is posted by the same user
-    if (comment.user.toString() !== req.user.id) {
+    if (comment.userId !== req.user.id) {
       return res.status(401).json({ msg: "Unauthorized" });
     }
 
     // Remove comment
     const removeIndex = post.comments
-      .map((comment) => comment.user.toString())
+      .map((comment) => comment.userId)
       .indexOf(req.user.id);
     post.comments.splice(removeIndex, 1);
     await post.save();

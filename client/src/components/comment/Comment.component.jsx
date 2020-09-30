@@ -11,14 +11,14 @@ const Comment = ({ comment, auth, postId, commentId, deleteComment }) => {
     <article className="media">
       <figure className="media-left">
         <p className="image is-64x64">
-          <img src={comment.user.avatar} alt="User avatar" />
+          <img src={comment.avatar} alt="User avatar" />
         </p>
       </figure>
       <div className="media-content">
         <div className="content">
           <p>
             <strong>
-              {comment.user.name}
+              {comment.name}
               <br />
             </strong>
             <small>
@@ -29,7 +29,7 @@ const Comment = ({ comment, auth, postId, commentId, deleteComment }) => {
           </p>
         </div>
       </div>
-      {comment.user._id === auth.user._id && (
+      {comment.userId === auth.user._id && (
         <div className="media-right">
           <button
             onClick={(e) => deleteComment(postId, commentId)}

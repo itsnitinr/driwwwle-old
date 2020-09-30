@@ -136,7 +136,6 @@ export const addComment = (postId, formData) => async (dispatch) => {
     );
     dispatch({ type: ADD_COMMENT, payload: res.data });
     dispatch(setAlert("Comment added", "is-success"));
-    window.location.reload(false);
   } catch (err) {
     // Send alerts
     const errors = err.response.data.errors;
