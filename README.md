@@ -1,8 +1,6 @@
 # Driwwwle
 ![Driwwwle Banner](https://i.imgur.com/ZNiCfjJ.jpg)
 
-[Trello Board for Bugs & Upcoming Features](https://trello.com/b/YQwx3wmS/driwwwle)
-
 ## The Idea 💡
 We've all visited Dribbble atleast once, right ? You know, the cool place where designers go to showcase their projects and their work. Pretty cool, right ? So why not make such a website for the developers ? And hence, Driwwwle was born. Although there are websites like [Codepen](https://codepen.io/), I didn't really feel that it resembled what Dribbble is to designers. This is my first MERN stack project and I hope you like it.
 
