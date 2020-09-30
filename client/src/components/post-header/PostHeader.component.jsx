@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,10 +12,11 @@ const PostHeader = ({
   addLike,
   removeLike,
 }) => {
-  const [likeUnlikeText, setLikeUnlikeText] = React.useState("Like");
+  const [likeUnlikeText, setLikeUnlikeText] = useState("Like");
 
   const likeOrUnlikeButton = () => (
-      <button onClick={() => {
+    <button
+      onClick={() => {
         if (likeUnlikeText === "Like") {
           addLike(_id);
           setLikeUnlikeText("Unlike");
@@ -23,9 +24,11 @@ const PostHeader = ({
           removeLike(_id);
           setLikeUnlikeText("Like");
         }
-      }} className="button is-danger mr-5">
-        <i className="fas fa-heart mr-2"></i> {likeUnlikeText}
-      </button>
+      }}
+      className="button is-danger mr-5"
+    >
+      <i className="fas fa-heart mr-2"></i> {likeUnlikeText}
+    </button>
   );
 
   useEffect(() => {
@@ -34,7 +37,8 @@ const PostHeader = ({
     } else {
       setLikeUnlikeText("Unlike");
     }
-  }, []);
+    // eslint-disable-next-line
+  }, [auth.user._id]);
 
   return (
     <div className="post-header px-5 mb-2">
