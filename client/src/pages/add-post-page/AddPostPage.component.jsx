@@ -50,6 +50,7 @@ const AddPostPage = ({ addPost, history }) => {
     post.append("repoUrl", repoUrl);
     setIsSubmitting(true);
     addPost(post, history);
+    setIsSubmitting(false);
   };
 
   return (

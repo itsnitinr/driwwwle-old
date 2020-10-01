@@ -26,6 +26,7 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
     e.preventDefault();
     setIsSubmitting(true);
     loginUser(email, password);
+    setIsSubmitting(false);
   };
 
   if (isAuthenticated) {

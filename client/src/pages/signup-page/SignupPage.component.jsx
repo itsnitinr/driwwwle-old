@@ -35,6 +35,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
     } else {
       setIsSubmitting(true);
       registerUser({ name, email, password });
+      setIsSubmitting(false);
     }
   };
 
