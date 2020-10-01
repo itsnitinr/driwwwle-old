@@ -8,6 +8,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  LOGIN_REQUEST,
+  REGISTER_REQUEST
 } from "./auth.types";
 import { CLEAR_PROFILE } from "../profile/profile.types";
 import { setAlert } from "../alert/alert.actions";
@@ -43,6 +45,11 @@ export const registerUser = ({ name, email, password }) => async (dispatch) => {
   const body = JSON.stringify({ name, email, password });
 
   try {
+    // Dispatch REGISTER_REQUEST
+    dispatch({
+      type: REGISTER_REQUEST,
+    });
+
     // Make a request to backend API
     const res = await axios.post("/api/users", body, config);
 
@@ -80,6 +87,11 @@ export const loginUser = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   try {
+    // Dispatch LOGIN_REQUEST
+    dispatch({
+      type: LOGIN_REQUEST,
+    });
+
     // Make a request to backend API
     const res = await axios.post("/api/auth", body, config);
 

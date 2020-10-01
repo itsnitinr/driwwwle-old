@@ -6,6 +6,7 @@ import {
   GET_POSTS,
   POST_ERROR,
   ADD_POST,
+  ADD_POST_REQUEST,
   UPDATE_LIKES,
   CLEAR_POST,
   ADD_COMMENT,
@@ -49,6 +50,7 @@ export const addPost = (formData, history) => async (dispatch) => {
   };
 
   try {
+    dispatch({ type: ADD_POST_REQUEST })
     const res = await axios.post("/api/posts", formData, config);
     dispatch({ type: ADD_POST, payload: res.data });
     history.push("/posts");

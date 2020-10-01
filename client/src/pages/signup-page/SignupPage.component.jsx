@@ -9,16 +9,13 @@ import { registerUser } from "../../redux/auth/auth.actions";
 
 import "./SignupPage.styles.css";
 
-const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
+const SignupPage = ({ setAlert, registerUser, isAuthenticated, isLoading }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     password2: "",
   });
-
-  // State for add "is-loading" class to submit button
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { name, email, password, password2 } = formData;
 
@@ -33,9 +30,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
     } else if (password.length < 6) {
       setAlert("Password should be atleast 6 characters long", "is-danger");
     } else {
-      setIsSubmitting(true);
       registerUser({ name, email, password });
-      setIsSubmitting(false);
     }
   };
 
@@ -126,7 +121,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
                 <button
                   type="submit"
                   className={`button green-bg ${
-                    isSubmitting ? "is-loading" : null
+                    isLoading ? "is-loading" : null
                   }`}
                 >
                   Submit
@@ -145,6 +140,7 @@ const SignupPage = ({ setAlert, registerUser, isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  isLoading: state.auth.loading
 });
 
 export default connect(mapStateToProps, { setAlert, registerUser })(SignupPage);

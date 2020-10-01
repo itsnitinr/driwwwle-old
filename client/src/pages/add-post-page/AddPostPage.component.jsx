@@ -8,7 +8,7 @@ import { addPost } from "../../redux/post/post.actions";
 
 import "./AddPostPage.styles.css";
 
-const AddPostPage = ({ addPost, history }) => {
+const AddPostPage = ({ addPost, history, isLoading }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -19,7 +19,6 @@ const AddPostPage = ({ addPost, history }) => {
   });
 
   // State for add "is-loading" class to submit button
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     title,
@@ -48,9 +47,7 @@ const AddPostPage = ({ addPost, history }) => {
     post.append("techTags", techTags);
     post.append("websiteUrl", websiteUrl);
     post.append("repoUrl", repoUrl);
-    setIsSubmitting(true);
     addPost(post, history);
-    setIsSubmitting(false);
   };
 
   return (
@@ -163,7 +160,7 @@ const AddPostPage = ({ addPost, history }) => {
                 <button
                   type="submit"
                   className={`button green-bg ${
-                    isSubmitting ? "is-loading" : null
+                    isLoading ? "is-loading" : null
                   }`}
                 >
                   Submit
@@ -177,4 +174,8 @@ const AddPostPage = ({ addPost, history }) => {
   );
 };
 
-export default connect(null, { addPost })(withRouter(AddPostPage));
+const mapStateToProps = (state) => ({
+  isLoading: state.auth.loading
+});
+
+export default connect(mapStateToProps, { addPost })(withRouter(AddPostPage));
