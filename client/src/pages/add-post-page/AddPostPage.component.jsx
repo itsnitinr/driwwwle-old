@@ -18,8 +18,6 @@ const AddPostPage = ({ addPost, history, isLoading }) => {
     repoUrl: "",
   });
 
-  // State for add "is-loading" class to submit button
-
   const {
     title,
     description,
@@ -48,8 +46,6 @@ const AddPostPage = ({ addPost, history, isLoading }) => {
     post.append("websiteUrl", websiteUrl);
     post.append("repoUrl", repoUrl);
     addPost(post, history);
-    //allow re-submitting the form after fixing validation errors
-    setIsSubmitting(false);
   };
 
   return (
