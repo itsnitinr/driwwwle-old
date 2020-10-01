@@ -8,14 +8,11 @@ import { loginUser } from "../../redux/auth/auth.actions";
 
 import "./SigninPage.styles.css";
 
-const SigninPage = ({ loginUser, isAuthenticated }) => {
+const SigninPage = ({ loginUser, isAuthenticated, isLoading }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  // State for add "is-loading" class to submit button
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { email, password } = formData;
 
@@ -24,7 +21,6 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     loginUser(email, password);
   };
 
@@ -80,7 +76,7 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
                 <button
                   type="submit"
                   className={`button green-bg ${
-                    isSubmitting ? "is-loading" : null
+                    isLoading ? "is-loading" : null
                   }`}
                 >
                   Submit
@@ -99,6 +95,7 @@ const SigninPage = ({ loginUser, isAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  isLoading: state.auth.loading
 });
 
 export default connect(mapStateToProps, { loginUser })(SigninPage);
