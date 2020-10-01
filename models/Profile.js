@@ -4,6 +4,7 @@ const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+    trim: true,
   },
   bio: {
     type: String,
@@ -11,9 +12,12 @@ const ProfileSchema = new mongoose.Schema({
   },
   website: {
     type: String,
+    trim: true,
+    lowercase: true,
   },
   location: {
     type: String,
+    trim: true,
   },
   skills: {
     type: [String],
@@ -21,6 +25,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   githubUsername: {
     type: String,
+    trim: true,
   },
   followers: [
     {
@@ -41,18 +46,27 @@ const ProfileSchema = new mongoose.Schema({
   social: {
     twitter: {
       type: String,
+      trim: true,
+      lowercase: true,
     },
     instagram: {
       type: String,
+      trim: true,
+      lowercase: true,
     },
     linkedin: {
       type: String,
+      trim: true,
+      lowercase: true,
     },
     codepen: {
       type: String,
+      trim: true,
     },
     github: {
       type: String,
+      trim: true,
+      lowercase: true,
     },
   },
   date: {

@@ -8,6 +8,7 @@ const PostSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    trim: true,
   },
   description: {
     type: String,
@@ -24,9 +25,11 @@ const PostSchema = new mongoose.Schema({
   websiteUrl: {
     type: String,
     required: true,
+    trim: true,
   },
   repoUrl: {
     type: String,
+    trim: true,
   },
   likes: [
     {
