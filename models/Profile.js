@@ -4,7 +4,6 @@ const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    trim: true,
   },
   bio: {
     type: String,
@@ -62,6 +61,7 @@ const ProfileSchema = new mongoose.Schema({
     codepen: {
       type: String,
       trim: true,
+      lowercase: true,
     },
     github: {
       type: String,
