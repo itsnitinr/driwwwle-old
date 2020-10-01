@@ -50,6 +50,8 @@ const AddPostPage = ({ addPost, history }) => {
     post.append("repoUrl", repoUrl);
     setIsSubmitting(true);
     addPost(post, history);
+    //allow re-submitting the form after fixing validation errors
+    setIsSubmitting(false);
   };
 
   return (

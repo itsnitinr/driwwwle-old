@@ -1,6 +1,7 @@
 const config = require("config");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
+const path = require("path")
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 cloudinary.config({
@@ -16,6 +17,17 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const upload = multer({ storage }).array("postImage", 5);
+const upload = multer({ 
+    storage,
+    fileFilter: function (req, file, callback) {
+      var ext = path.extname(file.originalname);
+      var errMsg;
+      if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        errMsg = 'Only images are allowed'
+        req.fileValidationError = errMsg;
+        return callback(null, false, new Error(errMsg));
+      }
+      callback(null, true)
+    }}).array("postImage", 5);
 
 module.exports = upload;
