@@ -175,7 +175,7 @@ const AddPostPage = ({ addPost, history, isLoading }) => {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.auth.loading
+  isLoading: state.post.loading
 });
 
 export default connect(mapStateToProps, { addPost })(withRouter(AddPostPage));
