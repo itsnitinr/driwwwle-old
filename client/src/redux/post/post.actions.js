@@ -8,25 +8,10 @@ import {
   ADD_POST,
   ADD_POST_REQUEST,
   UPDATE_LIKES,
-  CLEAR_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
   DELETE_POST,
 } from "./post.types";
-
-// Get all posts
-export const getPosts = () => async (dispatch) => {
-  try {
-    const res = await axios.get("/api/posts");
-    dispatch({ type: CLEAR_POST });
-    dispatch({ type: GET_POSTS, payload: res.data });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
 
 // Get personal feed
 export const getFeed = () => async (dispatch) => {

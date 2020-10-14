@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
 import Navbar from "../../components/navbar/Navbar.component";
 import Footer from "../../components/footer/Footer.component";
 import PostCard from "../../components/post-card/PostCard.component";
 
-import { getPosts } from "../../redux/post/post.actions";
+import { getPosts } from "../../redux/posts/posts.actions";
 
-const PostsPage = ({ getPosts, post: { posts, loading } }) => {
+function PostsPage() {
+  const dispatch = useDispatch()
+  const { posts, loading } = useSelector(state => state.post)
+
+
   useEffect(() => {
-    getPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getPosts())
+  }, [dispatch]);
 
   return (
     <>
@@ -36,8 +39,6 @@ const PostsPage = ({ getPosts, post: { posts, loading } }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  post: state.post,
-});
 
-export default connect(mapStateToProps, { getPosts })(PostsPage);
+
+export default PostsPage
