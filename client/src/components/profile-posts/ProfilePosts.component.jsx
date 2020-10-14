@@ -1,46 +1,55 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
 import PostCard from "../../components/post-card/PostCard.component";
+import Paginator from "../../components/paginator/Paginator.component";
 
-import { getUserPosts } from "../../redux/post/post.actions";
+import { getUserPosts } from "../../redux/posts/posts.actions";
+import usePaginator from "../../hooks/usePaginator";
 
 import "./ProfilePosts.styles.css";
 
-const ProfilePosts = ({ post: { posts, loading }, getUserPosts, userId }) => {
+function ProfilePosts({ userId }) {
+  const dispatch = useDispatch();
+  const { posts, loading } = useSelector((state) => state.posts);
+  const { items, currentPage, perPage, setCurrentPage } = usePaginator({
+    posts,
+  });
+
   useEffect(() => {
-    getUserPosts(userId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getUserPosts(userId));
+  }, [dispatch, userId]);
 
   return (
     <>
-      {loading && !posts ? (
+      {loading && !items ? (
         <div className="full-height-spinner">
           <Spinner />
         </div>
       ) : (
         <section id="posts" className="container">
-          {posts.length === 0 ? (
+          {items.length === 0 ? (
             <h1 className="title full-screen">
               User hasn't posted anything yet !
             </h1>
           ) : (
             <div className="columns is-multiline">
-              {posts.map((post) => (
+              {items.map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
           )}
+          <Paginator
+            onChange={setCurrentPage}
+            current={currentPage}
+            pageSize={perPage}
+            total={posts.length}
+          />
         </section>
       )}
     </>
   );
-};
+}
 
-const mapStateToProps = (state) => ({
-  post: state.post,
-});
-
-export default connect(mapStateToProps, { getUserPosts })(ProfilePosts);
+export default ProfilePosts;
