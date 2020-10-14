@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import Navbar from "../../components/navbar/Navbar.component";
+import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
 import Footer from "../../components/footer/Footer.component";
 import Spinner from "../../components/spinner/Spinner.component";
 import PostCard from "../../components/post-card/PostCard.component";
@@ -20,29 +21,31 @@ const FeedPage = ({ getFeed, post: { posts, loading } }) => {
   return (
     <>
       <Navbar />
-      {loading ? (
-        <Spinner />
-      ) : (
-        <section id="posts" className="container px-5">
-          {posts.length ? (
-            <>
-              <h1 className="title">Your Feed</h1>
-              <div className="columns is-multiline">
-                {posts.map((post) => (
-                  <PostCard key={post._id} post={post} />
-                ))}
-              </div>
-            </>
+      <ErrorBoundary>
+          {loading ? (
+            <Spinner />
           ) : (
-            <div className="container is-empty">
-              <NoPostsImage />
-              <h1 className="subtitle">
-                Uh oh ! Your feed is empty. Go on and follow some more users.
-              </h1>
-            </div>
+            <section id="posts" className="container px-5">
+              {posts.length ? (
+                <>
+                  <h1 className="title">Your Feed</h1>
+                  <div className="columns is-multiline">
+                    {posts.map((post) => (
+                      <PostCard key={post._id} post={post} />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="container is-empty">
+                  <NoPostsImage />
+                  <h1 className="subtitle">
+                    Uh oh ! Your feed is empty. Go on and follow some more users.
+                  </h1>
+                </div>
+              )}
+            </section>
           )}
-        </section>
-      )}
+      </ErrorBoundary>
       <Footer />
     </>
   );

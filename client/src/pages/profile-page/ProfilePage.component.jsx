@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
 import Navbar from "../../components/navbar/Navbar.component";
+import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
 import Footer from "../../components/footer/Footer.component";
 import ProfileHeader from "../../components/profile-header/ProfileHeader.component";
 import ProfileTabs from "../../components/profile-tabs/ProfileTabs.component";
@@ -17,7 +18,7 @@ const ProfilePage = ({
   auth,
   history,
 }) => {
-  useEffect(() => {
+  useEffect(( ) => {
     getProfileById(match.params.id, history);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,20 +26,22 @@ const ProfilePage = ({
   return (
     <>
       <Navbar />
-      {!profile || loading ? (
-        <div className="full-height-spinner">
-          <Spinner />
-        </div>
-      ) : (
-        <div id="profile" className="container">
-          <ProfileHeader
-            profile={profile}
-            ownProfile={!loading && auth.user._id === profile.user._id}
-            id={match.params.id}
-          />
-          <ProfileTabs profile={profile} userId={match.params.id} />
-        </div>
-      )}
+      <ErrorBoundary>
+        {!profile || loading ? (
+          <div className="full-height-spinner">
+            <Spinner />
+          </div>
+        ) : (
+          <div id="profile" className="container">
+            <ProfileHeader
+              profile={profile}
+              ownProfile={!loading && auth.user._id === profile.user._id}
+              id={match.params.id}
+            />
+            <ProfileTabs profile={profile} userId={match.params.id} />
+          </div>
+        )}
+      </ErrorBoundary>
       <Footer />
     </>
   );

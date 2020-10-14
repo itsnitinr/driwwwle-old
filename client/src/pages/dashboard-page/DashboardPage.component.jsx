@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import Navbar from "../../components/navbar/Navbar.component";
+import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
 import Footer from "../../components/footer/Footer.component";
 import Spinner from "../../components/spinner/Spinner.component";
 import ProfileHeader from "../../components/profile-header/ProfileHeader.component";
@@ -23,16 +24,18 @@ const DashboardPage = ({
   return (
     <>
       <Navbar />
-      {(loading && profile === null) || !user ? (
-        <div className="full-height-spinner">
-          <Spinner />
-        </div>
-      ) : (
-        <div id="profile" className="container">
-          <ProfileHeader profile={profile} isDashboard />
-          <ProfileTabs profile={profile} userId={user._id} />
-        </div>
-      )}
+      <ErrorBoundary>
+        {(loading && profile === null) || !user ? (
+          <div className="full-height-spinner">
+            <Spinner />
+          </div>
+        ) : (
+          <div id="profile" className="container">
+            <ProfileHeader profile={profile} isDashboard />
+            <ProfileTabs profile={profile} userId={user._id} />
+          </div>
+        )}
+      </ErrorBoundary>
       <Footer />
     </>
   );

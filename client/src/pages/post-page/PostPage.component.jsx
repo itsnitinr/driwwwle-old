@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Navbar from "../../components/navbar/Navbar.component";
+import ErrorBoundary from "../../components/errorBoundary/ErrorBoundary";
 import Footer from "../../components/footer/Footer.component";
 import Spinner from "../../components/spinner/Spinner.component";
 import PostCarousel from "../../components/post-carousel/PostCarousel.component";
@@ -20,19 +21,21 @@ const PostPage = ({ getPostById, post: { post, loading }, match, history }) => {
   return (
     <>
       <Navbar />
-      {loading || !post ? (
-        <div className="full-height-spinner">
-          <Spinner />
-        </div>
-      ) : (
-        <>
-          <section id="post" className="container">
-            <PostHeader post={post} />
-            <PostCarousel images={post.images} />
-            <PostTiles post={post} />
-          </section>
-        </>
-      )}
+      <ErrorBoundary>
+        {loading || !post ? (
+          <div className="full-height-spinner">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <section id="post" className="container">
+              <PostHeader post={post} />
+              <PostCarousel images={post.images} />
+              <PostTiles post={post} />
+            </section>
+          </>
+        )}
+      </ErrorBoundary>
       <Footer />
     </>
   );
