@@ -11,14 +11,13 @@ import ProfileTabs from "../../components/profile-tabs/ProfileTabs.component";
 import { getProfileById } from "../../redux/profile/profile.actions";
 
 function ProfilePage() {
-  const history = useHistory()
-  const {id: userId} = useParams()
-  const dispatch = useDispatch()
-  const { auth } = useSelector(state => state.auth)
-  const { profile, loading } = useSelector(state => state.profile)
-
+  const history = useHistory();
+  const { id: userId } = useParams();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { profile, loading } = useSelector((state) => state.profile);
   useEffect(() => {
-    dispatch(getProfileById(userId, history))
+    dispatch(getProfileById(userId, history));
   }, [dispatch, userId, history]);
 
   return (
@@ -32,7 +31,7 @@ function ProfilePage() {
         <div id="profile" className="container">
           <ProfileHeader
             profile={profile}
-            ownProfile={!loading && auth.user._id === profile.user._id}
+            ownProfile={!loading && user._id === profile.user._id}
             id={userId}
           />
           <ProfileTabs profile={profile} userId={userId} />
@@ -41,7 +40,6 @@ function ProfilePage() {
       <Footer />
     </>
   );
-};
+}
 
-export default ProfilePage
-
+export default ProfilePage;
