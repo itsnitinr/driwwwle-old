@@ -7,7 +7,7 @@ const Footer = () => {
       <h1>
         Made with love by <span>Nitin Ranganath</span>
       </h1>
-      <div className="social-icons">
+      <div className="socialIcons">
         <a href="https://instagram.com/iamnitinr">
           <i className="fab fa-instagram"></i>
         </a>
