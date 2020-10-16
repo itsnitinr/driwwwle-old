@@ -15,7 +15,7 @@
   color: var(--color-primary);
 }
 
-#footer .social-icons {
+#footer .socialIcons {
   width: 50%;
   margin: 0 auto;
   display: flex;
@@ -23,10 +23,10 @@
   font-size: 1.5rem;
 }
 
-#footer .social-icons a {
+#footer .socialIcons a {
   color: var(--color-grey);
 }
 
-#footer .social-icons a:hover {
+#footer .socialIcons a:hover {
   color: var(--color-primary);
 }

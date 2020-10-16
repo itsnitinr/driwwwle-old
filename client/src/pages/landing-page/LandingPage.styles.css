@@ -30,9 +30,17 @@
 @media screen and (max-width: 900px) {
   #landing {
     text-align: center;
-    padding: 1rem;
   }
   #landing #landing-image {
     width: 85%;
+  }
+}
+
+@media screen and (max-width: 355px) {
+  #landing .text-container {
+    padding: 1rem;
+  }
+  #landing .text-container .title {
+    font-size: 3rem;
   }
 }
