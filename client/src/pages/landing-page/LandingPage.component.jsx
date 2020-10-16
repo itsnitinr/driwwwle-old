@@ -21,11 +21,11 @@ const LandingPage = ({ isAuthenticated }) => {
           <div className="columns">
             <div className="column">
               <div className="text-container">
-                <h1 className="title">Dribbble, but for web developers !</h1>
+                <h1 className="title">Dribbble, but for web developers!</h1>
                 <p className="subtitle has-text-grey">
                   A portal for web developers and freelancers to showcase their
                   work to the world. Share and get inspired by creatives for
-                  free !
+                  free!
                 </p>
                 <Link to="/signup" className="button primary-bg">
                   Get Started
