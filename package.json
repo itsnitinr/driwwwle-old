@@ -23,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.27",
     "multer": "^1.4.2",
-    "multer-storage-cloudinary": "^4.0.0"
+    "multer-storage-cloudinary": "^4.0.0",
+    "rc-pagination": "^3.1.0"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

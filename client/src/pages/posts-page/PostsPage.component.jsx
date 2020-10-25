@@ -1,18 +1,25 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
 import Navbar from "../../components/navbar/Navbar.component";
 import Footer from "../../components/footer/Footer.component";
 import PostCard from "../../components/post-card/PostCard.component";
+import Paginator from "../../components/paginator/Paginator.component";
 
-import { getPosts } from "../../redux/post/post.actions";
+import { getPosts } from "../../redux/posts/posts.actions";
+import usePaginator from "../../hooks/usePaginator";
 
-const PostsPage = ({ getPosts, post: { posts, loading } }) => {
+function PostsPage() {
+  const dispatch = useDispatch();
+  const { posts, loading } = useSelector((state) => state.post);
+  const { items, currentPage, perPage, setCurrentPage } = usePaginator({
+    posts,
+  });
+
   useEffect(() => {
-    getPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <>
@@ -25,19 +32,21 @@ const PostsPage = ({ getPosts, post: { posts, loading } }) => {
         <section id="posts" className="container px-5">
           <h1 className="title">Recent Posts</h1>
           <div className="columns is-multiline">
-            {posts.map((post) => (
+            {items.map((post) => (
               <PostCard key={post._id} post={post} />
             ))}
           </div>
+          <Paginator
+            onChange={setCurrentPage}
+            current={currentPage}
+            pageSize={perPage}
+            total={posts.length}
+          />
         </section>
       )}
       <Footer />
     </>
   );
-};
+}
 
-const mapStateToProps = (state) => ({
-  post: state.post,
-});
-
-export default connect(mapStateToProps, { getPosts })(PostsPage);
+export default PostsPage;

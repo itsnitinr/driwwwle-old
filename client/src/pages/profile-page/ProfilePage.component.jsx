@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import Spinner from "../../components/spinner/Spinner.component";
 import Navbar from "../../components/navbar/Navbar.component";
@@ -10,17 +10,16 @@ import ProfileTabs from "../../components/profile-tabs/ProfileTabs.component";
 
 import { getProfileById } from "../../redux/profile/profile.actions";
 
-const ProfilePage = ({
-  match,
-  getProfileById,
-  profile: { profile, loading },
-  auth,
-  history,
-}) => {
+function ProfilePage() {
+  const history = useHistory()
+  const {id: userId} = useParams()
+  const dispatch = useDispatch()
+  const { auth } = useSelector(state => state.auth)
+  const { profile, loading } = useSelector(state => state.profile)
+
   useEffect(() => {
-    getProfileById(match.params.id, history);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch(getProfileById(userId, history))
+  }, [dispatch, userId, history]);
 
   return (
     <>
@@ -34,9 +33,9 @@ const ProfilePage = ({
           <ProfileHeader
             profile={profile}
             ownProfile={!loading && auth.user._id === profile.user._id}
-            id={match.params.id}
+            id={userId}
           />
-          <ProfileTabs profile={profile} userId={match.params.id} />
+          <ProfileTabs profile={profile} userId={userId} />
         </div>
       )}
       <Footer />
@@ -44,11 +43,5 @@ const ProfilePage = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  auth: state.auth,
-});
+export default ProfilePage
 
-export default withRouter(
-  connect(mapStateToProps, { getProfileById })(ProfilePage)
-);

@@ -8,25 +8,10 @@ import {
   ADD_POST,
   ADD_POST_REQUEST,
   UPDATE_LIKES,
-  CLEAR_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
   DELETE_POST,
 } from "./post.types";
-
-// Get all posts
-export const getPosts = () => async (dispatch) => {
-  try {
-    const res = await axios.get("/api/posts");
-    dispatch({ type: CLEAR_POST });
-    dispatch({ type: GET_POSTS, payload: res.data });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
 
 // Get personal feed
 export const getFeed = () => async (dispatch) => {
@@ -50,7 +35,7 @@ export const addPost = (formData, history) => async (dispatch) => {
   };
 
   try {
-    dispatch({ type: ADD_POST_REQUEST })
+    dispatch({ type: ADD_POST_REQUEST });
     const res = await axios.post("/api/posts", formData, config);
     dispatch({ type: ADD_POST, payload: res.data });
     history.push("/posts");
@@ -80,19 +65,6 @@ export const getPostById = (postId, history) => async (dispatch) => {
       payload: { msg: err.response.statusText, status: err.response.status },
     });
     history.push("/posts/404");
-  }
-};
-
-// Get all posts of an user
-export const getUserPosts = (userId) => async (dispatch) => {
-  try {
-    const res = await axios.get(`/api/posts/user/${userId}`);
-    dispatch({ type: GET_POSTS, payload: res.data });
-  } catch (err) {
-    dispatch({
-      type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
   }
 };
 
