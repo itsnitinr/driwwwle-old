@@ -13,9 +13,7 @@ import usePaginator from "../../hooks/usePaginator";
 function PostsPage() {
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.post);
-  const { items, currentPage, perPage, setCurrentPage } = usePaginator({
-    posts,
-  });
+  const { items, currentPage, perPage, setCurrentPage } = usePaginator(posts);
 
   useEffect(() => {
     dispatch(getPosts());

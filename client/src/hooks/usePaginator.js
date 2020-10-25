@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 function Paginate(items, currentPage, perPage) {
+  if (!items.length) return [];
   return items.slice((currentPage - 1) * perPage, currentPage * perPage);
 }
 
-function usePaginator({ posts }) {
+function usePaginator(values = []) {
   const [page, setPage] = useState({
     offset: 0,
     perPage: 6,
@@ -14,7 +15,7 @@ function usePaginator({ posts }) {
   });
 
   const updateItems = () => {
-    const items = Paginate(posts, page.currentPage, page.perPage);
+    const items = Paginate(values, page.currentPage, page.perPage);
     setPage((prevState) => ({
       ...prevState,
       items,
@@ -28,7 +29,7 @@ function usePaginator({ posts }) {
     }));
   };
 
-  useEffect(updateItems, [posts, page.currentPage]);
+  useEffect(updateItems, [values, page.currentPage]);
 
   return {
     items: page.items,

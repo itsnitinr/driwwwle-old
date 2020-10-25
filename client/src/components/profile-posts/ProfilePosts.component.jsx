@@ -13,9 +13,7 @@ import "./ProfilePosts.styles.css";
 function ProfilePosts({ userId }) {
   const dispatch = useDispatch();
   const { posts, loading } = useSelector((state) => state.posts);
-  const { items, currentPage, perPage, setCurrentPage } = usePaginator({
-    posts,
-  });
+  const { items, currentPage, perPage, setCurrentPage } = usePaginator(posts);
 
   useEffect(() => {
     dispatch(getUserPosts(userId));
