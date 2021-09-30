@@ -1,5 +1,7 @@
 # Driwwwle
 
+### ⚠️ This repository is now read-only since I have built a better version. Check [this repo](https://github.com/itsnitinr/driwwwle-v2) instead.
+
 ![Driwwwle Banner](https://i.imgur.com/ZNiCfjJ.jpg)
 
 ## The Idea 💡
